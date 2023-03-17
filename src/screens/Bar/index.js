@@ -16,6 +16,7 @@ import {
 import bar from '../../assests/bar.png';
 import avatr from '../../assests/avatr.png';
 import { PlayArea } from '../../components';
+import { Header } from '../../components';
 import LinearGradient from 'react-native-linear-gradient';
 const deviceHeight = Dimensions.get('window').height;
 const deviceWidth = Dimensions.get('window').width;
@@ -204,71 +205,7 @@ const BarScreen = ({ navigation, route }) => {
       start={{ x: 93.75, y: 406 }}
       end={{ x: 281.25, y: 406 }}>
       <View style={styles.container}>
-        {Platform.OS === 'ios' ? (
-          <TouchableOpacity
-            style={styles.aerrowbackios}
-            onPress={() => {
-              navigation?.goBack();
-            }}>
-            <Image
-              style={{ width: '100%', height: '100%' }}
-              source={arrowback}
-            />
-          </TouchableOpacity>
-        ) : (
-          <TouchableOpacity
-            style={styles.aerrowback}
-            onPress={() => {
-              navigation?.goBack();
-            }}>
-            <Image
-              style={{ width: '100%', height: '100%' }}
-              source={arrowback}
-            />
-          </TouchableOpacity>
-        )}
-        {Platform.OS === 'ios' ? (
-          <View
-            style={{
-              justifyContent: 'center',
-              alignItems: 'center',
-              paddingBottom: deviceHeight * 0.02,
-              // marginTop: deviceHeight * 0.05,
-              zIndex: 0,
-            }}>
-            <View
-              style={{ width: deviceWidth * 0.6, height: deviceHeight * 0.14 }}>
-              <Image style={{ width: '100%', height: '100%' }} source={Vlogo} />
-            </View>
-            <TouchableOpacity style={{ alignSelf: 'flex-start', position: 'absolute', right: 0, top: 0 }} onPress={() => navigation.navigate('contacts')} >
-              <View
-                style={styles?.avtr}>
-                <Text numberOfLines={1} style={styles.avtrname}>Chats</Text>
-                <Text numberOfLines={1} style={styles.avtrname1}>Chats</Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-        ) : (
-          <View
-            style={{
-              justifyContent: 'center',
-              alignItems: 'center',
-              paddingBottom: deviceHeight * 0.02,
-              zIndex: 0,
-            }}>
-            <View
-              style={{ width: deviceWidth * 0.6, height: deviceHeight * 0.14 }}>
-              <Image style={{ width: '100%', height: '100%' }} source={Vlogo} />
-            </View>
-            <TouchableOpacity style={{ alignSelf: 'flex-start', position: 'absolute', right: 0, top: 0 }} onPress={() => navigation.navigate('contacts')} >
-              <View
-                style={styles?.avtr}>
-                <Text numberOfLines={1} style={styles.avtrname}>Chats</Text>
-                <Text numberOfLines={1} style={styles.avtrname1}>Chats</Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-        )}
+        <Header status={"component"}/>
         <ScrollView refreshControl={
           <RefreshControl
             refreshing={refreshing}
@@ -300,7 +237,7 @@ export default BarScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // padding: 24,
+    paddingTop: 24,
     paddingHorizontal: 24,
   },
   container1: {
@@ -413,3 +350,72 @@ const styles = StyleSheet.create({
     position: "absolute"
   },
 });
+
+
+{/*
+{Platform.OS === 'ios' ? (
+  <TouchableOpacity
+    style={styles.aerrowbackios}
+    onPress={() => {
+      navigation?.goBack();
+    }}>
+    <Image
+      style={{ width: '100%', height: '100%' }}
+      source={arrowback}
+    />
+  </TouchableOpacity>
+) : (
+  <TouchableOpacity
+    style={styles.aerrowback}
+    onPress={() => {
+      navigation?.goBack();
+    }}>
+    <Image
+      style={{ width: '100%', height: '100%' }}
+      source={arrowback}
+    />
+  </TouchableOpacity>
+)}
+{Platform.OS === 'ios' ? (
+  <View
+    style={{
+      justifyContent: 'center',
+      alignItems: 'center',
+      paddingBottom: deviceHeight * 0.02,
+      // marginTop: deviceHeight * 0.05,
+      zIndex: 0,
+    }}>
+    <View
+      style={{ width: deviceWidth * 0.6, height: deviceHeight * 0.14 }}>
+      <Image style={{ width: '100%', height: '100%' }} source={Vlogo} />
+    </View>
+    <TouchableOpacity style={{ alignSelf: 'flex-start', position: 'absolute', right: 0, top: 0 }} onPress={() => navigation.navigate('contacts')} >
+      <View
+        style={styles?.avtr}>
+        <Text numberOfLines={1} style={styles.avtrname}>Chats</Text>
+        <Text numberOfLines={1} style={styles.avtrname1}>Chats</Text>
+      </View>
+    </TouchableOpacity>
+  </View>
+) : (
+  <View
+    style={{
+      justifyContent: 'center',
+      alignItems: 'center',
+      paddingBottom: deviceHeight * 0.02,
+      zIndex: 0,
+    }}>
+    <View
+      style={{ width: deviceWidth * 0.6, height: deviceHeight * 0.14 }}>
+      <Image style={{ width: '100%', height: '100%' }} source={Vlogo} />
+    </View>
+    <TouchableOpacity style={{ alignSelf: 'flex-start', position: 'absolute', right: 0, top: 0 }} onPress={() => navigation.navigate('contacts')} >
+      <View
+        style={styles?.avtr}>
+        <Text numberOfLines={1} style={styles.avtrname}>Chats</Text>
+        <Text numberOfLines={1} style={styles.avtrname1}>Chats</Text>
+      </View>
+    </TouchableOpacity>
+  </View>
+)}
+*/}

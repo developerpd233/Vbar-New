@@ -15,6 +15,7 @@ import False from './False';
 import Contacts from './Contacts';
 import OTP from './OTP';
 import ContentManagment from './ContentManagment';
+import ComponentsScreen from './ComponentsScreen';
 
 
-export{ContentManagment,QrCode,SignUp,SelfiScreen,VbarScreen,GameZoneScreen,Foodarea,PatioLounge,BarScreen,ChatScreen,DeatailScreen,SplashScreen,Payment, Success , False, Contacts, OTP}
+export{ContentManagment,QrCode,SignUp,SelfiScreen,VbarScreen,GameZoneScreen,Foodarea,PatioLounge,BarScreen,ChatScreen,DeatailScreen,SplashScreen,Payment, Success , False, Contacts, OTP, ComponentsScreen}

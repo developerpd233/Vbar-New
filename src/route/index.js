@@ -16,7 +16,8 @@ import {
   False,
   Contacts,
   OTP,
-  ContentManagment
+  ContentManagment,
+  ComponentsScreen,
 } from '../screens';
 import 'react-native-gesture-handler';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -235,6 +236,23 @@ const Routing = () => {
           name="BARScreen"
           component={BarScreen}
         />
+
+        <Stack.Screen
+          options={{
+            headerShown: false,
+            title: '',
+            statusBarColor: '#CA60FF',
+            headerStyle: {
+              backgroundColor: '#CA60FF',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            },
+          }}
+          name="ComponentsScreen"
+          component={ComponentsScreen}
+        />    
 
         <Stack.Screen
           options={{

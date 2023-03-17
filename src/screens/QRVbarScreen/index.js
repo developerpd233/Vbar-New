@@ -17,7 +17,7 @@ import andicationimg from '../../assests/andicationimg.png';
 import food from '../../assests/food.png';
 import potli from '../../assests/potli.png';
 import bar from '../../assests/bar.png';
-import { BComponent, BUtton } from '../../components';
+import { BComponent, BUtton, Header } from '../../components';
 import LinearGradient from 'react-native-linear-gradient';
 import { width, height, totalSize } from 'react-native-dimension';
 import vB from '../../assests/vB.png';
@@ -39,53 +39,60 @@ const VbarScreen = ({ navigation }) => {
   const reduxData = useSelector(state => state.LocationId)
   const userImg = useSelector(state => state.userImg);
   const [location, setLocation] = useState([]);
+  
   useEffect(() => {
     getLocation();
   }, [location]);
+  
   const dispatch = useDispatch();
+  
   const getLocation = async () => {
     try {
       let response = await Getlocation(token, id);
-     
       // response.data.status == 401  ?
       // navigation.navigate('SignupScreen')
       //  :
         setLocation(response.data.getLocation);
         dispatch(LocationId(response.data.getLocation))
-    
-   
     } catch (error) {
       console.log("🚀 ~ file: index.js:56 ~ getLocation ~ error", error)
       console.log(error);
     }
   };
 
+  const GoToSwitchscreen = async (i) => {
+    try {
+      const resp = await ApiSauce.putWithToken(UPDATE_LOCATION(i) , token)
+      console.log("🚀 ~ file: index.js:66 ~ GoToSwitchscreen ~ resp:", resp)
+      let screens = ['foodArea','GameZonearea','PatioLounge','BARScreen']
+      let names = ['foodArea','GameZonearea','PatioLounge','Bar']
+      navigation.navigate(screens[i-1], { name: names[i-1] , locationId: resp?.newLocation?.id });
+    } catch (error) {
+      console.log("🚀 ~ file: index.js:67 ~ GoToSwitchscreen ~ error:", error)
+    }
+  }
+
+  {/*
   const GoToBar = async () => {
     try {
     const resp = await ApiSauce.putWithToken(UPDATE_LOCATION(4) , token)
     console.log("🚀 ~ file: index.js ~ line 54 ~ GoToBar ~ resp", resp)
     navigation.navigate('BARScreen', { name: 'Bar' , locationId: resp?.newLocation?.id });
-
       console.log("🚀 ~ file: index.js ~ line 54 ~ GoToBar ~ resp", resp)
-      
     } catch (error) {
-      console.log("🚀 ~ file: index.js ~ line 56 ~ GoToBar ~ error", error)
-      
+      console.log("🚀 ~ file: index.js ~ line 56 ~ GoToBar ~ error", error)   
     }
   };
+
   const GoTopatilounge = async () => {
     try {
       const resp = await ApiSauce.putWithToken(UPDATE_LOCATION(3) , token)
       console.log("🚀 ~ file: index.js ~ line 54 ~ GoToBar ~ resp", resp)
       navigation.navigate('PatioLounge', { name: 'PatioLounge' , locationId: resp?.newLocation?.id });
-  
         console.log("🚀 ~ file: index.js ~ line 54 ~ GoToBar ~ resp", resp)
-        
       } catch (error) {
-        console.log("🚀 ~ file: index.js ~ line 56 ~ GoToBar ~ error", error)
-        
+        console.log("🚀 ~ file: index.js ~ line 56 ~ GoToBar ~ error", error) 
       }
-
   };
   
   const GoToGamescreen = async () => {
@@ -98,16 +105,14 @@ const VbarScreen = ({ navigation }) => {
         console.log("🚀 ~ file: index.js ~ line 56 ~ GoToBar ~ error", error) 
       }
   };
+
   const GoToFoodscreen = async () => {
     try {
       const resp = await ApiSauce.putWithToken(UPDATE_LOCATION(1) , token)
-      navigation.navigate('foodArea', { name: 'foodArea' , locationId: resp?.newLocation?.id });
-  
-        console.log("🚀 ~ file: index.js ~ line 54 ~ GoToBar ~ resp", resp)
-        
+      navigation.navigate('foodArea', { name: 'foodArea' , locationId: resp?.newLocation?.id });  
+        console.log("🚀 ~ file: index.js ~ line 54 ~ GoToBar ~ resp", resp)  
       } catch (error) {
         console.log("🚀 ~ file: index.js ~ line 56 ~ GoToBar ~ error", error)
-        
       }
   };
 
@@ -132,6 +137,7 @@ const VbarScreen = ({ navigation }) => {
       });
 
   };
+*/}
 
   return (
     <SafeAreaView style={{ backgroundColor: '#CA60FF' }} >
@@ -141,75 +147,16 @@ const VbarScreen = ({ navigation }) => {
         start={{ x: 93.75, y: 406 }}
         end={{ x: 281.25, y: 406 }}>
         <View style={styles.container}>
-        {Platform.OS === 'ios' ? (
-          <View
-            style={{
-              justifyContent: 'center',
-              alignItems: 'center',
-              flexDirection: 'row',
-              paddingBottom: deviceHeight * 0.06,
-            }}>
-          <TouchableOpacity style={{ alignSelf: 'flex-start', position: 'absolute', left: 0 }} onPress={() => GotoDetail()}>
-              <View onPress={() => alert('jjj')}
-                style={styles?.avtr}>
-                <Text numberOfLines={1} style={styles.avtrname}>Profile</Text>
-                <Text numberOfLines={1} style={styles.avtrname1}>Profile</Text>
-              </View>
-          </TouchableOpacity>
-              
-              
-            <View
-              style={{ width: deviceWidth * 0.6, height: deviceHeight * 0.14 }}>
-              <Image style={{ width: '100%', height: '100%' }} source={Vlogo} />
-            </View> 
-            <TouchableOpacity style={{ alignSelf: 'flex-start', position: 'absolute', right: 0 }} onPress={() => navigation.navigate('contacts')}>
-              <View
-                style={styles?.avtr}>
-                <Text numberOfLines={1} style={styles.avtrname}>Chats</Text>
-                <Text numberOfLines={1} style={styles.avtrname1}>Chats</Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-        ) : (
-          <View
-            style={{
-              justifyContent: 'center',
-              alignItems: 'center',
-              flexDirection: 'row',
-              paddingBottom: deviceHeight * 0.04,
-            }}>
-
-            <TouchableOpacity style={{ alignSelf: 'flex-start', position: 'absolute', left: 0 }} onPress={() => GotoDetail()}>
-                <View onPress={() => alert('jjj')}
-                  style={styles?.avtr}>
-                  <Text numberOfLines={1} style={styles.avtrname}>Profile</Text>
-                  <Text numberOfLines={1} style={styles.avtrname1}>Profile</Text>
-                </View>
-            </TouchableOpacity>
-
-            <View
-              style={{ width: deviceWidth * 0.6, height: deviceHeight * 0.14 }}>
-              <Image style={{ width: '100%', height: '100%' }} source={Vlogo} />
-            </View>
-
-            <TouchableOpacity style={{ alignSelf: 'flex-start', position: 'absolute', right: 0 }} onPress={() => navigation.navigate('contacts')} >
-              <View
-                style={styles?.avtr}>
-                <Text numberOfLines={1} style={styles.avtrname}>Chats</Text>
-                <Text numberOfLines={1} style={styles.avtrname1}>Chats</Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-          )}
+          <Header status={"parent"}/>
           {location && location?.length ? <><View style={styles.containerdiv}>
             <BComponent
-              functionname={GoToFoodscreen}
+              functionname={()=>{GoToSwitchscreen(1)}}
               title={location[0]?.location}
               ima={food}
             // data={location[0]}
             /> 
           <BComponent
-              functionname={GoToGamescreen}
+              functionname={()=>{GoToSwitchscreen(2)}}
               ima={andicationimg}
               title={location[1]?.location}
             />
@@ -223,11 +170,15 @@ const VbarScreen = ({ navigation }) => {
             <View style={styles.containerdiv}>
            
                <BComponent
-                functionname={GoTopatilounge}
+              functionname={()=>{GoToSwitchscreen(3)}}
                 title="Patio/Lounge"
                 ima={potli}
               />
-            <BComponent functionname={GoToBar} title={location[3]?.location} ima={bar} /> 
+            <BComponent 
+              functionname={()=>{GoToSwitchscreen(4)}}
+              title={location[3]?.location} 
+              ima={bar} 
+            /> 
             </View></> : null}
           {Platform.OS === 'ios' ? (
             <View
@@ -385,7 +336,6 @@ const styles = StyleSheet.create({
     position: "absolute"
   },
 });
-
 
 
 
