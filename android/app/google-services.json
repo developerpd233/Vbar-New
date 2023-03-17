@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "930532842199",
+    "project_id": "juan-b03fb",
+    "storage_bucket": "juan-b03fb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:930532842199:android:d116b45f0fe36deb4f2e92",
+        "android_client_info": {
+          "package_name": "com.vbar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "930532842199-mqjn7dirpks8c6dgl0djs8j1pah1rhsf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3v_JSZPcV6L5n84w0I_qJRuZzGm77RFM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "930532842199-mqjn7dirpks8c6dgl0djs8j1pah1rhsf.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "930532842199-7506p24iv8arsmqcboaj729bsc0ftpbv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.vbar"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

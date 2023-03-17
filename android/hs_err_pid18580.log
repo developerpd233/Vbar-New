@@ -1,0 +1,225 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x00007ffc47228383, pid=18580, tid=21536
+#
+# JRE version:  (11.0.16.1+1) (build )
+# Java VM: OpenJDK 64-Bit Server VM (11.0.16.1+1, mixed mode, sharing, tiered, compressed oops, g1 gc, windows-amd64)
+# Problematic frame:
+# V  [jvm.dll+0x1d8383]
+#
+# No core dump will be written. Minidumps are not enabled by default on client versions of Windows
+#
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: -Xmx64m -Xms64m -Dorg.gradle.appname=gradlew org.gradle.wrapper.GradleWrapperMain app:assembleRelease -x bundleReleaseJsAndAssets
+
+Host: Intel(R) Core(TM) i5-4300U CPU @ 1.90GHz, 4 cores, 7G,  Windows 10 , 64 bit Build 19041 (10.0.19041.2364)
+Time: Wed Feb  8 15:11:07 2023 Pakistan Standard Time elapsed time: 0.037395 seconds (0d 0h 0m 0s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x0000024e19bda000):  JavaThread "Unknown thread" [_thread_in_vm, id=21536, stack(0x0000009d0c700000,0x0000009d0c800000)]
+
+Stack: [0x0000009d0c700000,0x0000009d0c800000],  sp=0x0000009d0c7fecf0,  free space=1019k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [jvm.dll+0x1d8383]
+V  [jvm.dll+0x1d64b3]
+V  [jvm.dll+0x35f87b]
+V  [jvm.dll+0x7688c0]
+V  [jvm.dll+0x3cd3bf]
+V  [jvm.dll+0x3cf751]
+C  [jli.dll+0x5207]
+C  [ucrtbase.dll+0x21bb2]
+C  [KERNEL32.DLL+0x17614]
+C  [ntdll.dll+0x526a1]
+
+
+siginfo: EXCEPTION_ACCESS_VIOLATION (0xc0000005), reading address 0x0000000000000000
+
+
+Registers:
+RAX=0x0000d683f774dec1, RBX=0x0000000000000000, RCX=0x0000000000000000, RDX=0x0000000000000000
+RSP=0x0000009d0c7fecf0, RBP=0x0000000000000000, RSI=0x0000024e19bda000, RDI=0x0000000000000000
+R8 =0x0000000000000000, R9 =0x0000000000000000, R10=0x0000000000000000, R11=0x0000009d0c7feaa0
+R12=0x0000000000000000, R13=0x00007ffc47618f30, R14=0x0000024e19b04628, R15=0x0000009d0c7ffa38
+RIP=0x00007ffc47228383, EFLAGS=0x0000000000010256
+
+Top of Stack: (sp=0x0000009d0c7fecf0)
+0x0000009d0c7fecf0:   0000024e19b0b9d0 00007ffc4731d648
+0x0000009d0c7fed00:   0000009d0c7ffa38 0000000000000400
+0x0000009d0c7fed10:   0000000000000000 0000024e19bda000
+0x0000009d0c7fed20:   0000cb00b9d93447 00007ffc47618f30
+0x0000009d0c7fed30:   0000009d0c7fee10 0000009d0c7ffa38
+0x0000009d0c7fed40:   0000024e19b04628 00007ffc47618f30
+0x0000009d0c7fed50:   0000000000000000 00007ffca6960000
+0x0000009d0c7fed60:   00007ffc478e9668 0000000000000000
+0x0000009d0c7fed70:   00007ffc4722635a 00007ffcb4a355fc
+0x0000009d0c7fed80:   0000009d0c7fee10 0000000000000001
+0x0000009d0c7fed90:   0000d683f774dec1 0000024e19b04628
+0x0000009d0c7feda0:   00007ffc00000000 00007ffc47618f30
+0x0000009d0c7fedb0:   0000024e19bda000 0000009d0c7feed0
+0x0000009d0c7fedc0:   0000000000000000 00007ffc472264b3
+0x0000009d0c7fedd0:   00007ffca40f0000 00007ffca696cff8
+0x0000009d0c7fede0:   0000009d0c7feed0 0000024e19bda000 
+
+Instructions: (pc=0x00007ffc47228383)
+0x00007ffc47228283:   f0 ff 15 16 96 60 00 48 8b cb 41 b1 01 48 2b 8c
+0x00007ffc47228293:   24 90 00 00 00 45 33 c0 33 d2 c6 04 31 00 48 8b
+0x00007ffc472282a3:   ce e8 b7 0b 00 00 42 80 3c 33 3b 4a 8d 3c 33 75
+0x00007ffc472282b3:   1c 0f 1f 40 00 0f 1f 84 00 00 00 00 00 48 ff c3
+0x00007ffc472282c3:   ff c5 42 80 3c 33 3b 4a 8d 3c 33 74 f0 49 83 3c
+0x00007ffc472282d3:   24 00 74 18 48 8b 94 24 98 00 00 00 49 8b cf e8
+0x00007ffc472282e3:   99 ab ee ff 49 8b cc e8 01 ab ee ff 48 8b 44 24
+0x00007ffc472282f3:   20 48 8d 4c 24 30 49 89 47 18 48 8b 44 24 28 49
+0x00007ffc47228303:   89 47 20 4d 89 67 10 e8 31 5d 0f 00 44 8b ed 48
+0x00007ffc47228313:   89 9c 24 90 00 00 00 48 3b 5c 24 38 0f 8c cd fe
+0x00007ffc47228323:   ff ff 4c 8b 7c 24 40 4c 8b 64 24 48 48 8b 7c 24
+0x00007ffc47228333:   50 48 8b 74 24 58 48 8b 9c 24 80 00 00 00 48 83
+0x00007ffc47228343:   c4 60 41 5e 41 5d 5d c3 cc cc cc cc cc 40 53 55
+0x00007ffc47228353:   56 41 55 48 81 ec b8 00 00 00 48 8b 05 c4 0c 8a
+0x00007ffc47228363:   00 48 33 c4 48 89 84 24 a0 00 00 00 48 8b e9 48
+0x00007ffc47228373:   c7 c3 ff ff ff ff 0f 1f 80 00 00 00 00 48 ff c3
+0x00007ffc47228383:   80 3c 0b 00 75 f7 33 f6 c6 44 24 30 01 40 38 35
+0x00007ffc47228393:   74 3d 8d 00 74 17 40 38 35 51 a3 8c 00 75 0e 33
+0x00007ffc472283a3:   d2 48 8d 0d e5 10 6c 00 e8 40 2e 1a 00 45 33 ed
+0x00007ffc472283b3:   85 db 0f 8e 11 02 00 00 48 89 bc 24 e8 00 00 00
+0x00007ffc472283c3:   48 8b fd 4c 89 a4 24 f0 00 00 00 48 63 c3 33 db
+0x00007ffc472283d3:   4c 89 b4 24 f8 00 00 00 4c 89 bc 24 b0 00 00 00
+0x00007ffc472283e3:   48 89 44 24 68 48 89 74 24 40 0f 1f 00 0f b6 07
+0x00007ffc472283f3:   84 c0 74 12 3c 3b 74 0e 0f b6 44 2b 01 48 ff c3
+0x00007ffc47228403:   ff c6 84 c0 75 ee 48 8d 54 24 38 48 c7 44 24 38
+0x00007ffc47228413:   00 00 00 00 48 8d 4c 24 60 e8 9f 5b 0f 00 48 8b
+0x00007ffc47228423:   44 24 38 33 d2 4c 8b b0 78 02 00 00 49 8b 46 18
+0x00007ffc47228433:   4d 8b 66 10 48 89 44 24 50 49 8b 46 20 48 89 44
+0x00007ffc47228443:   24 58 49 8b 46 28 48 89 44 24 48 8b c6 41 2b c5
+0x00007ffc47228453:   48 63 f8 48 8d 4f 01 e8 c1 44 4a 00 49 63 d5 4c
+0x00007ffc47228463:   8b c7 48 03 d5 48 8b c8 4c 8b f8 ff 15 2c 94 60
+0x00007ffc47228473:   00 48 8b cb 48 2b 4c 24 40 80 7c 24 30 00 42 c6 
+
+
+
+---------------  P R O C E S S  ---------------
+
+Threads class SMR info:
+_java_thread_list=0x0000024e19b045b0, length=0, elements={
+}
+
+Java Threads: ( => current thread )
+
+Other Threads:
+
+=>0x0000024e19bda000 (exited) JavaThread "Unknown thread" [_thread_in_vm, id=21536, stack(0x0000009d0c700000,0x0000009d0c800000)]
+
+Threads with active compile tasks:
+
+VM state:not at safepoint (not fully initialized)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+
+[error occurred during error reporting (printing compressed oops mode), id 0xc0000005, EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x00007ffc477d6727]
+
+Deoptimization events (0 events):
+No events
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+Events (1 events):
+Event: 0.017 Loaded shared library C:\Program Files\Eclipse Adoptium\jdk-11.0.16.101-hotspot\bin\zip.dll
+
+
+Dynamic libraries:
+0x00007ff6b3340000 - 0x00007ff6b334d000 	C:\Program Files\Eclipse Adoptium\jdk-11.0.16.101-hotspot\bin\java.exe
+0x00007ffcb7010000 - 0x00007ffcb7208000 	C:\WINDOWS\SYSTEM32\ntdll.dll
+0x00007ffcb5bd0000 - 0x00007ffcb5c8f000 	C:\WINDOWS\System32\KERNEL32.DLL
+0x00007ffcb4a30000 - 0x00007ffcb4d02000 	C:\WINDOWS\System32\KERNELBASE.dll
+0x00007ffcb4d10000 - 0x00007ffcb4e10000 	C:\WINDOWS\System32\ucrtbase.dll
+0x00007ffcabd30000 - 0x00007ffcabd47000 	C:\Program Files\Eclipse Adoptium\jdk-11.0.16.101-hotspot\bin\jli.dll
+0x00007ffcb52f0000 - 0x00007ffcb5491000 	C:\WINDOWS\System32\USER32.dll
+0x00007ffcb4750000 - 0x00007ffcb4772000 	C:\WINDOWS\System32\win32u.dll
+0x00007ffcb5ba0000 - 0x00007ffcb5bcb000 	C:\WINDOWS\System32\GDI32.dll
+0x00007ffcb4920000 - 0x00007ffcb4a2f000 	C:\WINDOWS\System32\gdi32full.dll
+0x00007ffcb4880000 - 0x00007ffcb491d000 	C:\WINDOWS\System32\msvcp_win.dll
+0x00007ffcb3ad0000 - 0x00007ffcb3d6a000 	C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.19041.1110_none_60b5254171f9507e\COMCTL32.dll
+0x00007ffcb5d40000 - 0x00007ffcb5dde000 	C:\WINDOWS\System32\msvcrt.dll
+0x00007ffcabc90000 - 0x00007ffcabca5000 	C:\Program Files\Eclipse Adoptium\jdk-11.0.16.101-hotspot\bin\VCRUNTIME140.dll
+0x00007ffcb6050000 - 0x00007ffcb6082000 	C:\WINDOWS\System32\IMM32.DLL
+0x00007ffc8dbb0000 - 0x00007ffc8dc4b000 	C:\Program Files\Eclipse Adoptium\jdk-11.0.16.101-hotspot\bin\msvcp140.dll
+0x00007ffc47050000 - 0x00007ffc47bd2000 	C:\Program Files\Eclipse Adoptium\jdk-11.0.16.101-hotspot\bin\server\jvm.dll
+0x00007ffcb5050000 - 0x00007ffcb50fe000 	C:\WINDOWS\System32\ADVAPI32.dll
+0x00007ffcb5100000 - 0x00007ffcb519c000 	C:\WINDOWS\System32\sechost.dll
+0x00007ffcb5a70000 - 0x00007ffcb5b95000 	C:\WINDOWS\System32\RPCRT4.dll
+0x00007ffcb54a0000 - 0x00007ffcb54a8000 	C:\WINDOWS\System32\PSAPI.DLL
+0x00007ffc9baa0000 - 0x00007ffc9bac7000 	C:\WINDOWS\SYSTEM32\WINMM.dll
+0x00007ffcaf340000 - 0x00007ffcaf349000 	C:\WINDOWS\SYSTEM32\WSOCK32.dll
+0x00007ffcb5280000 - 0x00007ffcb52eb000 	C:\WINDOWS\System32\WS2_32.dll
+0x00007ffca7510000 - 0x00007ffca751a000 	C:\WINDOWS\SYSTEM32\VERSION.dll
+0x00007ffcb1e30000 - 0x00007ffcb1e42000 	C:\WINDOWS\SYSTEM32\kernel.appcore.dll
+0x00007ffcae000000 - 0x00007ffcae010000 	C:\Program Files\Eclipse Adoptium\jdk-11.0.16.101-hotspot\bin\verify.dll
+0x00007ffcb4100000 - 0x00007ffcb42e4000 	C:\WINDOWS\SYSTEM32\DBGHELP.DLL
+0x00007ffcb3ed0000 - 0x00007ffcb3f05000 	C:\WINDOWS\SYSTEM32\dbgcore.DLL
+0x00007ffcb4780000 - 0x00007ffcb4802000 	C:\WINDOWS\System32\bcryptPrimitives.dll
+0x00007ffca6960000 - 0x00007ffca6988000 	C:\Program Files\Eclipse Adoptium\jdk-11.0.16.101-hotspot\bin\java.dll
+0x00007ffcace90000 - 0x00007ffcace9a000 	C:\Program Files\Eclipse Adoptium\jdk-11.0.16.101-hotspot\bin\jimage.dll
+0x00007ffca40f0000 - 0x00007ffca4108000 	C:\Program Files\Eclipse Adoptium\jdk-11.0.16.101-hotspot\bin\zip.dll
+
+dbghelp: loaded successfully - version: 4.0.5 - missing functions: none
+symbol engine: initialized successfully - sym options: 0x614 - pdb path: .;C:\Program Files\Eclipse Adoptium\jdk-11.0.16.101-hotspot\bin;C:\WINDOWS\SYSTEM32;C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.19041.1110_none_60b5254171f9507e;C:\Program Files\Eclipse Adoptium\jdk-11.0.16.101-hotspot\bin\server
+
+VM Arguments:
+jvm_args: -Xmx64m -Xms64m -Dorg.gradle.appname=gradlew 
+java_command: org.gradle.wrapper.GradleWrapperMain app:assembleRelease -x bundleReleaseJsAndAssets
+java_class_path (initial): D:\react_native\vbar_final\android\\gradle\wrapper\gradle-wrapper.jar
+Launcher Type: SUN_STANDARD
+
+[Global flags]
+     uint G1ConcRefinementThreads                  = 4                                         {product} {ergonomic}
+    uintx GCDrainStackTargetSize                   = 64                                        {product} {ergonomic}
+   size_t InitialHeapSize                          = 67108864                                  {product} {command line}
+   size_t MaxHeapSize                              = 67108864                                  {product} {command line}
+    uintx ReservedCodeCacheSize                    = 251658240                              {pd product} {ergonomic}
+     bool SegmentedCodeCache                       = true                                      {product} {ergonomic}
+     bool UseCompressedClassPointers               = true                                 {lp64_product} {ergonomic}
+     bool UseCompressedOops                        = true                                 {lp64_product} {ergonomic}
+     bool UseG1GC                                  = true                                      {product} {ergonomic}
+     bool UseLargePagesIndividualAllocation        = false                                  {pd product} {ergonomic}
+
+Logging:
+Log output configuration:
+ #0: stdout all=warning uptime,level,tags
+ #1: stderr all=off uptime,level,tags
+
+Environment Variables:
+JAVA_HOME=C:\Program Files\Eclipse Adoptium\jdk-11.0.16.101-hotspot\
+CLASSPATH=D:\react_native\vbar_final\android\\gradle\wrapper\gradle-wrapper.jar
+PATH=C:\Program Files\Eclipse Adoptium\jdk-11.0.16.101-hotspot\bin;C:\Program Files\Eclipse Adoptium\jdk-17.0.6.10-hotspot\bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\ProgramData\ComposerSetup\bin;C:\wamp64\bin\php\php8.1.0;C:\Program Files\PuTTY\;C:\ProgramData\chocolatey\bin;C:\Program Files\nodejs\;C:\metasploit-framework\bin\;C:\Users\Aun Electronic\AppData\Local\Android\Sdk;C:\Users\Aun Electronic\AppData\Local\Microsoft\WindowsApps;C:\Users\Aun Electronic\AppData\Roaming\Composer\vendor\bin;C:\Users\Aun Electronic\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Aun Electronic\AppData\Roaming\npm;C:\Users\Aun Electronic\AppData\Local\GitHubDesktop\bin;C:\Users\Aun Electronic\AppData\Local\Android\Sdk\platform-tools;
+USERNAME=Aun Electronic
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 69 Stepping 1, GenuineIntel
+TMP=C:\Users\AUNELE~1\AppData\Local\Temp
+TEMP=C:\Users\AUNELE~1\AppData\Local\Temp
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows 10 , 64 bit Build 19041 (10.0.19041.2364)
+OS uptime: 1 days 0:39 hours
+
+CPU:total 4 (initial active 4) 
+
+Memory: 4k page, system-wide physical 8070M (2479M free)
+TotalPageFile size 20870M (AvailPageFile size 11917M)
+current process WorkingSet (physical memory assigned to process): 8M, peak: 8M
+current process commit charge ("private bytes"): 3M, peak: 3M
+
+vm_info: OpenJDK 64-Bit Server VM (11.0.16.1+1) for windows-amd64 JRE (11.0.16.1+1), built on Aug 16 2022 02:58:04 by "" with MS VC++ 15.9 (VS2017)
+
+END.

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>VBAR.ipa</key>
+	<array>
+		<dict>
+			<key>architectures</key>
+			<array>
+				<string>arm64</string>
+			</array>
+			<key>buildNumber</key>
+			<string>5</string>
+			<key>certificate</key>
+			<dict>
+				<key>SHA1</key>
+				<string>35CBC618749EC93317738125D36DBCBEA2509E30</string>
+				<key>dateExpires</key>
+				<string>04/01/2024</string>
+				<key>type</key>
+				<string>Apple Development</string>
+			</dict>
+			<key>embeddedBinaries</key>
+			<array>
+				<dict>
+					<key>architectures</key>
+					<array>
+						<string>arm64</string>
+					</array>
+					<key>buildNumber</key>
+					<string>1</string>
+					<key>certificate</key>
+					<dict>
+						<key>SHA1</key>
+						<string>35CBC618749EC93317738125D36DBCBEA2509E30</string>
+						<key>dateExpires</key>
+						<string>04/01/2024</string>
+						<key>type</key>
+						<string>Apple Development</string>
+					</dict>
+					<key>name</key>
+					<string>CardinalMobile.framework</string>
+					<key>team</key>
+					<dict>
+						<key>id</key>
+						<string>2AAU99XYU6</string>
+						<key>name</key>
+						<string>Virtual Bar LLC</string>
+					</dict>
+					<key>versionNumber</key>
+					<string>2.2.4</string>
+				</dict>
+			</array>
+			<key>entitlements</key>
+			<dict>
+				<key>application-identifier</key>
+				<string>2AAU99XYU6.org.reactjs.native.example.VBAR</string>
+				<key>aps-environment</key>
+				<string>development</string>
+				<key>com.apple.developer.team-identifier</key>
+				<string>2AAU99XYU6</string>
+				<key>get-task-allow</key>
+				<true/>
+			</dict>
+			<key>name</key>
+			<string>VBAR.app</string>
+			<key>profile</key>
+			<dict>
+				<key>UUID</key>
+				<string>afb2ab09-caf4-409c-90e6-bb53c4c254d2</string>
+				<key>dateExpires</key>
+				<string>05/01/2024</string>
+				<key>name</key>
+				<string>iOS Team Provisioning Profile: org.reactjs.native.example.VBAR</string>
+			</dict>
+			<key>team</key>
+			<dict>
+				<key>id</key>
+				<string>2AAU99XYU6</string>
+				<key>name</key>
+				<string>Virtual Bar LLC</string>
+			</dict>
+			<key>versionNumber</key>
+			<string>1.1</string>
+		</dict>
+	</array>
+</dict>
+</plist>
