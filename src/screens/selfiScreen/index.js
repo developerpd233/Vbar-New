@@ -35,7 +35,6 @@ const SelfiScreen = ({ navigation }) => {
   const [Loading, setLoading] = useState(false);
   const [loading, setloading] = useState(false);
   const [count, setCount] = useState(false);
-  // const [Imageuri, setImageuri] = useState('');
   const user = useSelector(state => state.user);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -44,7 +43,6 @@ const SelfiScreen = ({ navigation }) => {
     })();
   }, []);
   const token = useSelector(state => state.signUpToken);
-  console.log(token);
 
   const GoToVbarr = () => {
     setloading(true);
@@ -71,7 +69,6 @@ const SelfiScreen = ({ navigation }) => {
     fetch("http://134.122.30.185:8000/api/users/uploadImage", requestOptions)
       .then(response => response.json())
       .then(result => {
-        console.log(result , "111111111");
         dispatch(myProfile(result?.image?.imageUrl))
         setloading(false);
         navigation.navigate('QRVbarscreen')
@@ -94,61 +91,17 @@ const SelfiScreen = ({ navigation }) => {
 
 
   };
-  // const requestCameraPermission = async () => {
-  //   try {
-  //     const granted = await PermissionsAndroid.request(
-  //       PermissionsAndroid.PERMISSIONS.CAMERA,
-  //       {
-  //         title: 'Cool Photo App Camera Permission',
-  //         message:
-  //           'Cool Photo App needs access to your camera ' +
-  //           'so you can take awesome pictures.',
-  //         buttonNeutral: 'Ask Me Later',
-  //         buttonNegative: 'Cancel',
-  //         buttonPositive: 'OK',
-  //       },
-  //     );
-  //     if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-  //       console.log('You can use the camera');
-  //     } else {
-  //       console.log('Camera permission denied');
-  //     }
-  //   } catch (err) {
-  //     console.warn(err);
-  //   }
-  // };
-  // const Opencamera = () => {
-  //   const options = {
-  //     includeBase64: true,
-  //   };
-  //   launchCamera(options, response => {
-  //     if (response.didCancel) {
-  //       console.log('user cancel image picker');
-  //     } else if (response.errorCode) {
-  //       console.log(' image picker error');
-  //     } else if (response.customButton) {
-  //       console.log(' user tab custome Button ');
-  //     } else {
-  //       const source = {uri: 'data:image/jpeg;base64,' + response.base64};
-  //       setImageuri(response?.assets[0]?.uri);
-  //     }
-  //   });
-  // };
+ 
   const captureHandle = async () => {
     try {
-      // setLoading(true)
       const data = await takePicture();
-      console.log(data);
       setImgUri(data?.uri);
       setCameraPreview(false);
-      // setLoading(false)
     } catch (error) {
       console.log(error);
-      // setLoading(false)
     }
   };
   return (
-    // <ScrollView style={{...(Platform.OS === 'ios' && { paddingTop: 40 })}} >
 
     <ImageBackground
       style={{ height: Dimensions.get('window').height, ...(Platform.OS === 'ios' && { paddingTop: 40 }) }}
@@ -158,7 +111,6 @@ const SelfiScreen = ({ navigation }) => {
         <ActivityIndicator />
       ) : (
         <ScrollView>
-          {/* <SafeAreaView> */}
           <View style={styles.container}>
             <View style={styles.container1}>
               <View style={styles.hedCentr}>
@@ -188,7 +140,6 @@ const SelfiScreen = ({ navigation }) => {
                         source={{ uri: imgUri }}
                       />
                     )}
-                    {/* <Image style={styles.proviewimage} source={{uri: Imageuri}} /> */}
                   </View>
                 ) : (
                   <View style={styles.proview}>
@@ -214,24 +165,16 @@ const SelfiScreen = ({ navigation }) => {
                         source={{ uri: imgUri }}
                       />
                     )}
-                    {/* {imgUri && (
-
-               )} */}
+                  
                   </View>
                 )}
                 {Platform.OS === 'ios' ? (<View
                   style={{
-                    // backgroundColor:"#fff",
                     width: 50,
                     height: 50,
                     right: deviceWidth * 0.3,
                     marginTop: deviceHeight * -0.06,
                     zIndex: 9,
-                    // padding:deviceWidth*0.01,
-                    // backgroundColor:"red"
-                    // paddingLeft:deviceWidth*0.02,
-                    // paddingTop:deviceHeight*0.02,
-                    // paddingBottom:deviceHeight*0.02,
                     borderRadius: 100,
                   }}>
                   <TouchableOpacity onPress={() => setFlip(!Flip)}>
@@ -242,17 +185,11 @@ const SelfiScreen = ({ navigation }) => {
                   </TouchableOpacity>
                 </View>) : (<View
                   style={{
-                    // backgroundColor:"#fff",
                     width: deviceWidth * 0.11,
                     height: deviceHeight * 0.06,
                     right: deviceWidth * 0.2,
                     marginTop: deviceHeight * -0.06,
                     zIndex: 9,
-                    // padding:deviceWidth*0.01,
-                    // backgroundColor:"red"
-                    // paddingLeft:deviceWidth*0.02,
-                    // paddingTop:deviceHeight*0.02,
-                    // paddingBottom:deviceHeight*0.02,
                     borderRadius: deviceWidth * 0.9,
                   }}>
                   <TouchableOpacity onPress={() => setFlip(!Flip)}>
@@ -265,32 +202,20 @@ const SelfiScreen = ({ navigation }) => {
 
                 <View
                   style={{
-                    // backgroundColor:"#fff",
                     width: deviceWidth * 0.11,
                     height: deviceHeight * 0.06,
                     left: deviceWidth * 0.2,
                     marginTop: deviceHeight * -0.05,
                     zIndex: 9,
-                    // padding:deviceWidth*0.01,
-                    // backgroundColor:"red"
-                    // paddingLeft:deviceWidth*0.02,
-                    // paddingTop:deviceHeight*0.02,
-                    // paddingBottom:deviceHeight*0.02,
                     borderRadius: deviceWidth * 0.9,
                   }}>
                   {Platform.OS === 'ios' ? (<View
                     style={{
-                      // backgroundColor:"#fff",
                       width: 50,
                       height: 50,
                       left: deviceWidth * 0.14,
                       marginTop: deviceHeight * -0.02,
                       zIndex: 9,
-                      // padding:deviceWidth*0.01,
-                      // backgroundColor:"red"
-                      // paddingLeft:deviceWidth*0.02,
-                      // paddingTop:deviceHeight*0.02,
-                      // paddingBottom:deviceHeight*0.02,
                       borderRadius: deviceWidth * 0.9,
                     }}>
                     <TouchableOpacity onPress={captureHandle}>
@@ -301,17 +226,11 @@ const SelfiScreen = ({ navigation }) => {
                     </TouchableOpacity>
                   </View>) : (<View
                     style={{
-                      // backgroundColor:"#fff",
                       width: deviceWidth * 0.11,
                       height: deviceHeight * 0.06,
                       left: deviceWidth * 0.04,
                       marginTop: deviceHeight * -0.01,
                       zIndex: 9,
-                      // padding:deviceWidth*0.01,
-                      // backgroundColor:"red"
-                      // paddingLeft:deviceWidth*0.02,
-                      // paddingTop:deviceHeight*0.02,
-                      // paddingBottom:deviceHeight*0.02,
                       borderRadius: deviceWidth * 0.9,
                     }}>
                     <TouchableOpacity onPress={captureHandle}>
@@ -371,7 +290,6 @@ const SelfiScreen = ({ navigation }) => {
               {!cameraPreview && !imgUri && (
                 <View style={{ paddingTop: deviceHeight * 0.0 }}>
                   <BUtton
-                    // functionName={GoToVbarr}
                     type="scan"
                     title="Take A selfie"
                     functionName={() => setCameraPreview(!cameraPreview)}
@@ -380,11 +298,9 @@ const SelfiScreen = ({ navigation }) => {
               )}
             </View>
           </View>
-          {/* </SafeAreaView> */}
         </ScrollView>
       )}
     </ImageBackground>
-    // </ScrollView>
 
   );
 };
@@ -395,7 +311,6 @@ const styles = StyleSheet.create({
     padding: 24,
   },
   container1: {
-    // paddingBottom: deviceHeight * 0.0,
   },
   hedCentr1: {
     top: deviceHeight * -0.03,
@@ -465,12 +380,10 @@ const styles = StyleSheet.create({
     borderRadius: deviceWidth * 0.6,
     left: deviceWidth * 0.001,
     top: deviceHeight * -0.0,
-    // zIndex: -1111,
   },
   preview: {
     borderWidth: 2,
     borderColor: '#D1179B',
-    // borderRadius: deviceWidth * 0.6,
     shadowColor: '#f705a7',
     shadowOpacity: 1,
     shadowRadius: 10,

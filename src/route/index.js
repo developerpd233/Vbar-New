@@ -4,10 +4,10 @@ import {
   QrCode,
   SelfiScreen,
   VbarScreen,
-  GameZoneScreen,
-  Foodarea,
-  PatioLounge,
-  BarScreen,
+  // GameZoneScreen,
+  // Foodarea,
+  // PatioLounge,
+  // BarScreen,
   ChatScreen,
   DeatailScreen,
   SplashScreen,
@@ -24,9 +24,6 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { Platform, Text, Linking } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { connectionSocket } from '../socket';
-import socket from '../socket';
-import { addSocketUser, socketUser } from '../store/actions';
 
 const Stack = createNativeStackNavigator();
 
@@ -37,21 +34,19 @@ const Routing = () => {
   const users = useSelector(state => state.users);
   const dispatch = useDispatch();
 
-  const [Splashscreen, setSplashscreen] = useState(true);
+  // const [Splashscreen, setSplashscreen] = useState(true);
+  const [Splashscreen, setSplashscreen] = useState(false);
   useEffect(() => {
-    // (async () => {
-    //   await connectionSocket(user, dispatch);
-    // })();
+  
 
-    setTimeout(() => {
-      setSplashscreen(false);
-    }, 4000);
   }, []);
-
+  setTimeout(() => {
+    setSplashscreen(false);
+  }, 2000);
+  
   useEffect(() => {
     if (Platform.OS === 'android') {
       Linking.getInitialURL().then(url => {
-        // this.navigate(url);
       });
     } else {
       Linking.addEventListener('url', handleOpenURL());
@@ -59,9 +54,7 @@ const Routing = () => {
   })
 
   const handleOpenURL = (event) => { // 
-    console.log('first', event)
-    // alert('ddd')
-    // this.navigate(event.url);
+
   }
 
   const linking = {
@@ -172,7 +165,7 @@ const Routing = () => {
           component={VbarScreen}
         />
 
-        <Stack.Screen
+        {/* <Stack.Screen
           options={{
             headerShown: false,
             title: '',
@@ -235,7 +228,7 @@ const Routing = () => {
           }}
           name="BARScreen"
           component={BarScreen}
-        />
+        /> */}
 
         <Stack.Screen
           options={{
@@ -271,7 +264,7 @@ const Routing = () => {
           component={DeatailScreen}
         />
 
-<Stack.Screen
+        <Stack.Screen
           options={{
             headerShown: false,
             title: '',
@@ -370,7 +363,7 @@ const Routing = () => {
           name="contacts"
           component={Contacts}
         />
- <Stack.Screen
+        <Stack.Screen
           options={{
             headerShown: false,
             title: '',

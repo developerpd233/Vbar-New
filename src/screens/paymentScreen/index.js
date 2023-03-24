@@ -69,7 +69,6 @@ export const Payment = ({ navigation, route }) => {
       resizeMode="cover">
       <View style={styles.container}>
         <TouchableOpacity
-          // style={Styles.aerrowbackios}
           onPress={() => {
             goBack && goBack();
           }}>

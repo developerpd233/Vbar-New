@@ -4,12 +4,8 @@ import {
   View,
   Text,
   StyleSheet,
-  SafeAreaView,
-  ImageBackground,
   Dimensions,
-  Image,
   ScrollView,
-  TouchableOpacity,
   ActivityIndicator,
   RefreshControl
 } from 'react-native';
@@ -21,9 +17,7 @@ import LinearGradient from 'react-native-linear-gradient';
 const deviceHeight = Dimensions.get('window').height;
 const deviceWidth = Dimensions.get('window').width;
 import { totalSize } from 'react-native-dimension';
-import Vlogo from '../../assests/Vlogo.png';
 import { useSelector } from 'react-redux';
-import arrowback from '../../assests/arrowback.png';
 import { getLocationUser } from '../../services/utilities/api/auth';
 import ApiSauce from '../../services/networkRequest'
 import { UPDATE_LOCATION } from '../../config/WebServices';
@@ -31,7 +25,6 @@ import { BASE_URL } from '../../config/WebServices';
 
 const BarScreen = ({ navigation, route }) => {
   const { name, locationId } = route.params;
-  // console.log('route.params;-------------name', name, locationId)
   const token = useSelector(state => state.signUpToken);
   const id = useSelector(state => state.qrId);
   const [users, setUsers] = useState([]);
@@ -39,8 +32,7 @@ const BarScreen = ({ navigation, route }) => {
   const [refreshing, setRefreshing] = React.useState(false);
   const currentuserid = useSelector(state => state?.user?.id);
   const reduxData = useSelector(state => state.LocationId);
-  //console.log('reduxfood area----->>', reduxData);
-  // console.log('users-====>>', users);
+
 
 
   useEffect(() => {
@@ -49,7 +41,6 @@ const BarScreen = ({ navigation, route }) => {
       console.log("🚀 ~ file: index.js ~ line 44 ~ response", response)
       let users = response.data.users.users;
       setUsers(users)
-      // console.log('users', users)
       setLoading(false);
     })()
   }, [])
@@ -155,20 +146,6 @@ const BarScreen = ({ navigation, route }) => {
     // }
   }
 
-  useEffect(() => {
-    // setplaceholder(name);
-    // getLocation();
-
-    // console.log('useef');
-  }, [navigation]);
-
-  // navigation.navigate(val, param);
-  useEffect(() => {
-    // setplaceholder(name);
-    // getLocation();
-
-    // console.log('useef');
-  }, [navigation]);
 
   const getLocation = async () => {
     try {

@@ -34,7 +34,6 @@ const ChatScreen = ({ navigation: { goBack, navigate }, route }) => {
   const statess = useSelector(state => state);
 
   const [messages, setMessages] = useState([]);
-  //console.log("🚀 ~ file: index.js:34 ~ ChatScreen ~ messages", messages)
 
   const get = () => {
     let url = `${BASE_URL}/chat/getHistory/${fetchSingleUser?.id}`;
@@ -47,19 +46,15 @@ const ChatScreen = ({ navigation: { goBack, navigate }, route }) => {
     };
     axios(config)
       .then(function (response) {
-        console.log('responseresponse', response)
         if (response?.data?.status) {
           let data = response?.data?.chatHistory;
           let modifiedData = [];
           for (let i = 0; i < data?.length; i++) {
-            console.log('data[i]?.senderId', data[i]?.senderId, fetchSingleUser?.id)
             let obj = { ...data[i], _id: data[i]?.id, text: data[i]?.message, user: { _id: String(data[i]?.receiverId), name:data[i]?.user.name , avatar : fetchSingleUser.id !== data[i].receiverId  ? data[i].user.imageUrl : data[i]?.sender.imageUrl } }//String(fetchSingleUser?.id) === String(data[i]?.senderId) ? : data[i]?.receiverId
             modifiedData.push(obj)
           }
           setMessages(modifiedData);
         }
-        console.log('response chat --=--=-->', token, url, response?.data?.chatHistory);
-        // navigation.navigate('Detailscreen', { data: response?.data });
       })
       .catch(function (error) {
         console.log('token', statess)
@@ -78,35 +73,9 @@ const ChatScreen = ({ navigation: { goBack, navigate }, route }) => {
   }, [isSend])
 
 
-  // useEffect(() => {
-  //   setMessages([
-  //     {
-  //       _id: 1,
-  //       text: 'Hello developer',
-  //       createdAt: new Date(),
-  //       user: {
-  //         _id: 2,
-  //         name: 'React Native',
-  //         avatar: 'https://placeimg.com/140/140/any',
-  //       },
-  //     },
-  //     {
-  //       _id: 2,
-  //       text: 'Hello developer',
-  //       createdAt: new Date(),
-  //       user: {
-  //         _id: 1,
-  //         name: 'React Native',
-  //         avatar: 'https://facebook.github.io/react/img/logo_og.png',
-  //       },
-
-  //     },
-  //   ])
-  // }, [])
   const onSend = useCallback((messages = []) => {
     console.log('first', messages)
     try {
-      // setMessages(previousMessages => GiftedChat.append(previousMessages, messages))
       let message = messages[0];
       let payload = { content: { _id: message?._id, createdAt: new Date()?.toUTCString(), text: message?.text, user: messages[0]?.user }, to: String(fetchSingleUser?.id) }//selected?.userID && selected?.userID?.length ? String(selected?.userID) : socket?.userID }
       console.log('payload', payload)
@@ -148,7 +117,6 @@ const ChatScreen = ({ navigation: { goBack, navigate }, route }) => {
   const renderBubble = (props) => {
     return (
       <>
-       {/* <Text style={Styles.name}>{props.currentMessage.receiverUser.name}</Text> */}
     <Bubble {...props}
       renderUsernameOnMessage={true}
       wrapperStyle={{
@@ -190,13 +158,7 @@ const ChatScreen = ({ navigation: { goBack, navigate }, route }) => {
           />
         </TouchableOpacity>
       )}
-      {/* <TouchableOpacity
-        // style={Styles.aerrowbackios}
-        onPress={() => {
-          goBack();
-        }}>
-        <Image style={{ marginTop: 20, marginLeft: 50 }} source={arrowback} />
-      </TouchableOpacity> */}
+
       <View style={{
         justifyContent: 'center', alignItems: 'center',
         marginBottom: deviceHeight * 0.05,
@@ -230,12 +192,7 @@ const ChatScreen = ({ navigation: { goBack, navigate }, route }) => {
           name: user?.name || '',// renderUserName(reduxState?.chatData?.student),
           avatar: userImg
         }}
-        // user={{
-        //   _id: String(fetchSingleUser?.id) || '',// reduxState?.user?._id,
-        //   name:  "dnnd",// renderUserName(reduxState?.chatData?.student),
-        //   avatar: messages?.[0]?.receiverUser?.imageUrl || require('../../assests/avatr.png'),//renderUserImage(reduxState?.chatData?.student)
-        // }}
-        // showUserAvatar={true}
+
         
         renderUsernameOnMessage={true}
         showAvatarForEveryMessage={true}
@@ -244,28 +201,16 @@ const ChatScreen = ({ navigation: { goBack, navigate }, route }) => {
         renderComposer={renderComposer}
         renderBubble={renderBubble}
         renderSend={renderSend}
-        // renderLoading={() => <CLoading
-        //   style={{ borderTopLeftRadius: 0, borderTopRightRadius: 0 }}
-        //   loading={false || reduxState?.loading} />}
-        // loadEarlier={reduxState?.isLoadMoreLoading && !reduxState.isLoadMore}
-        // onLoadEarlier={onEndReached}
-        // isLoadingEarlier={reduxState?.isLoadMoreLoading || false}
+  
         listViewProps={{
-          // onEndReached: () => onEndReached(),
           onEndReachedThreshold: 0.1,
           maxToRenderPerBatch: 20,
           windowSize: 20,
-          // isShowFooter: !reduxState?.isLoadMoreLoading && !reduxState?.isLoadMore || false,
         }}
         scrollToBottom={true}
         infiniteScroll={true}
       />
-       {/* <FastImage resizeMode='cover' progressiveRenderingEnabled={true} source={{ uri: "https://jaun.nyc3.digitaloceanspaces.com/profile_pics/1670241119457-image", priority: FastImage.priority.high }}
-          style={{ height: deviceHeight * 0.20, width: deviceWidth * 0.40, borderRadius: deviceWidth * 0.40 }} /> */}
-      {/* <View style={{backgroundColor:'red' , height:200}}>
-      <Image  source={"https://jaun.nyc3.digitaloceanspaces.com/profile_pics/1670241119457-image"}/>
 
-      </View> */}
     </ImageBackground>
   )
 }
@@ -348,7 +293,6 @@ const Styles = StyleSheet.create({
     left: deviceWidth * 0.03,
     width: deviceWidth * 0.1,
     height: deviceHeight * 0.03,
-    // top: deviceHeight * 0.05,
     marginTop: deviceHeight * 0.05,
     position: 'relative',
   },
@@ -356,9 +300,6 @@ const Styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderColor: '#D1179B',
     borderWidth: 2,
-    // paddingTop: 12,
-    // paddingBottom: 12,
-    // paddingLeft: 20,
     fontSize: totalSize(2),
     borderRadius: deviceWidth * 0.03,
     color: '#ffff',
@@ -369,9 +310,6 @@ const Styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderColor: '#D1179B',
     borderWidth: deviceWidth * 0.005,
-    // paddingTop: deviceHeight*0.04,
-    // paddingBottom: deviceHeight*0.05,
-    // paddingLeft: 20,
     fontSize: totalSize(2),
     borderRadius: deviceWidth * 0.03,
     color: '#000',
@@ -399,7 +337,6 @@ const Styles = StyleSheet.create({
 
   textStyle: {
     fontSize: 16,
-    // fontFamily: Theme.font.regular,
     color: '#D1179B',
     paddingHorizontal: 15,
     paddingVertical: 10,
@@ -418,8 +355,6 @@ const Styles = StyleSheet.create({
     marginHorizontal: 10
   },
   sendButtonIcon: {
-    // fontSize: 14,
-    // color: 'white',//Theme['light'].colors.tertiary
   },
 
 
@@ -440,7 +375,6 @@ const Styles = StyleSheet.create({
     elevation: 12,
   },
   rightBubbleText: {
-    // fontFamily: Theme.font.regular,
     fontSize: 16,
     fontFamily: 'Futura',
     fontSize: 14,
@@ -449,7 +383,7 @@ const Styles = StyleSheet.create({
 
   },
   leftBubble: {
-    backgroundColor: 'white',//Theme['light'].colors.fieldBackgroundColor,
+    backgroundColor: 'white',
     color: 'black',
     borderColor: '#D1179B',
     borderWidth: 2,

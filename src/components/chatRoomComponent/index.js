@@ -17,7 +17,6 @@ const deviceHeight = Dimensions.get('window').height;
 const deviceWidth = Dimensions.get('window').width;
 const ChatBox = ({data, nav}) => {
   const hellobaby = ({item}) => {
-    // console.log('item =====', item);
     return (
       <View>
      {Platform.OS === 'ios'?( <View>

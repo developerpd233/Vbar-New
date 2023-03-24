@@ -29,6 +29,7 @@ import { BASE_URL, UPDATE_LOCATION } from '../../config/WebServices';
 const GameZoneScreen = ({ navigation, route }) => {
 
   const { name, locationId } = route.params;
+  console.log("🚀 ~ file: index.js:32 ~ GameZoneScreen ~ locationId:", locationId)
 
   const [refreshing, setRefreshing] = React.useState(false);
 
@@ -186,8 +187,9 @@ const GameZoneScreen = ({ navigation, route }) => {
           <RefreshControl
             refreshing={refreshing}
             onRefresh={onRefresh}
-          />
-        }>
+          /> 
+        }> 
+          
 
           {!loading ? users && users?.length ? <View style={styles.container1}>
             <PlayArea

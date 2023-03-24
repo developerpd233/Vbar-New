@@ -28,30 +28,17 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 const SignUp = ({ navigation, route }) => {
-  console.log("🚀 ~ file: index.js ~ line 29 ~ SignUp ~ route", route)
 
-  // const [relation, setrelation] = useState('qwe');
-  // const [age, setage] = useState('18 - 20');
-  // const [Identify, setIdentify] = useState('Male');
-  // const [interest, setinterest] = useState('Male');
-  // const [name, setName] = useState('qwe');
-  // const [drink, setDrink] = useState('qwe');
-  // const [song, setSong] = useState('qwe');
-  // const [hobbies, setHobbies] = useState('qwe');
-  // const [dislikes, setDislikes] = useState('qwe');
+
 
 
   const [code, setCode] = useState();
-  console.log("🚀 ~ file: index.js ~ line 43 ~ SignUp ~ code", code)
   const [loading, setloading] = useState(false);
   const dispatch = useDispatch();
   const id = useSelector(state => state?.qrId);
   const token = useSelector(state => state.signUpToken);
-  console.log('--->', token);
-  console.log('id----->', id);
 
   const handleSetItem = async (token)=>{
-    console.log('token', token)
     try {
       await AsyncStorage.setItem("TOKEN", token);
   } catch (error) {
@@ -79,7 +66,6 @@ const SignUp = ({ navigation, route }) => {
         code,
         fcmToken
       );
-      console.log('tokentokentokentokentokentokentoken', response)
       if (response.data.status === 'failed') {
         handleError(response.data.message);
       } else {
@@ -92,8 +78,6 @@ const SignUp = ({ navigation, route }) => {
       }
 
       setloading(false);
-      // navigation.navigate('SelfiScreen');
-      // console.log(response.data.token, '===>signup');
     } catch (error) {
       console.log("🚀 ~ file: index.js ~ line 96 ~ handleSignUp ~ error", error, name,
         Identify,
@@ -109,10 +93,7 @@ const SignUp = ({ navigation, route }) => {
         fcmToken,
         code)
       handleError(error?.response?.data?.error);
-      // console.log('Error: ', error?.response?.data);
       setloading(false);
-      // console.log('Error: ', error?.response?.data?.msg);
-      // navigation.navigate('SelfiScreen');
     }
 
 
@@ -120,7 +101,6 @@ const SignUp = ({ navigation, route }) => {
 
 
   return (
-    // <SafeAreaView >
     <LinearGradient
       colors={['#CA60FF', '#502E78']}
       style={{ height: Dimensions.get('window').height, ...(Platform.OS === 'ios' && { paddingTop: 40 }) }}
@@ -144,8 +124,6 @@ const SignUp = ({ navigation, route }) => {
                       source={Vlogo}
                     />
                   </View>
-                  {/* <Text style={styles.title}>Sign in</Text>
-                        <Text style={styles.title1}>Sign in</Text> */}
                 </View>
                 <View
                   style={{
@@ -173,8 +151,6 @@ const SignUp = ({ navigation, route }) => {
                       source={Vlogo}
                     />
                   </View>
-                  {/* <Text style={styles.title}>Sign in</Text>
-                      <Text style={styles.title1}>Sign in</Text> */}
                 </View>
                 <View
                   style={{
@@ -199,13 +175,11 @@ const SignUp = ({ navigation, route }) => {
                 code={code} //You can supply this prop or not. The component will be used as a controlled / uncontrolled component respectively.
                 onCodeChanged={code => { setCode(code) }}
                 autoFocusOnLoad
-                // onCodeFilled={()=> handleSignUp()}
                 codeInputFieldStyle={styles.underlineStyleBase}
                 codeInputHighlightStyle={styles.underlineStyleHighLighted}
 
               />
             </View>
-            {/* <Text style={styles.errorText} >{error}</Text> */}
             <View style={styles.buttView}>
               <BUtton
                 loading={loading}
@@ -215,123 +189,11 @@ const SignUp = ({ navigation, route }) => {
               />
             </View>
 
-            {/* <View style={{ paddingBottom: 50 }}>
-                <View style={{ marginBottom: 10 }}>
-                  <TextField
-                    label="My Name"
-                    placeholder="User Name"
-                    value={name}
-                    setValue={setName}
-                    ref={nameRef}
-                    returnKeyType="next"
-                  />
-                </View>
-                <View style={{ marginBottom: 10 }}>
-                  <TextField
-                    label="Email"
-                    placeholder="User Email"
-                    value={email}
-                    setValue={setEmail}
-                    ref={nameRef}
-                    returnKeyType="next"
-                  />
-                </View>
-                <View style={{ zIndex: 10, marginBottom: 10 }}>
-                  <Selecter
-                    items={items3}
-                    labels="I Identify As"
-                    placeholder="I Identify As"
-                    value={Identify}
-                    onPress={value => setIdentify(value)}
-                    getIdentify={getIdentify}
-                  />
-                </View>
-                <View style={{ zIndex: 9, marginBottom: 10 }}>
-                  <Selecter
-                    items={items2}
-                    onPress={value => setinterest(value)}
-                    labels="I’m Interested in:"
-                    value={interest}
-                    getInterested={getInterested}
-                  />
-                </View>
-                <View style={{ zIndex: 8 }}>
-                  <Selecter
-                    items={items}
-                    labels="My Age:"
-                    placeholder="My Age :"
-                    value={age}
-                    onPress={value => setage(value)}
-                    getAge={getAge}
-                  />
-                </View>
-                <View style={{ zIndex: 7 }}>
-                  <Selecter
-                    items={items4}
-                    labels="My Relationship Preference "
-                    placeholder="My Relationship:"
-                    value={relation}
-                    onPress={value => setrelation(value)}
-                    getRelationship={getRelationship}
-                  />
-                </View>
-                <View style={styles.textVie}>
-                  <TextField
-                    label="My favorite drink:"
-                    placeholder="My Favorite Drink"
-                    value={drink}
-                    setValue={setDrink}
-                    ref={drinkRef}
-                    onSubmitEditing={() => songRef?.current?.focus()}
-                    returnKeyType="next"
-                  />
-                </View>
-                <View style={styles.textVie}>
-                  <TextField
-                    label="My favorite song: "
-                    placeholder="My Favorite Song"
-                    value={song}
-                    setValue={setSong}
-                    ref={songRef}
-                    onSubmitEditing={() => hobbiesRef?.current?.focus()}
-                    returnKeyType="next"
-                  />
-                </View>
-                <View style={styles.textVie}>
-                  <TextField
-                    label="My Hobbies :"
-                    placeholder="My Hobbies"
-                    value={hobbies}
-                    setValue={setHobbies}
-                    ref={hobbiesRef}
-                    onSubmitEditing={() => disLikesRef?.current?.focus()}
-                    returnKeyType="next"
-                  />
-                </View>
-                <View style={styles.textVie}>
-                  <TextField
-                    label="My Dislikes :"
-                    placeholder="My Dislikes"
-                    value={dislikes}
-                    setValue={setDislikes}
-                    ref={disLikesRef}
-                  />
-                </View>
-                <Text style={styles.errorText} >{error}</Text>
-                <View style={styles.buttView}>
-                  <BUtton
-                    loading={loading}
-                    functionName={handleSignUp}
-                    type="scan"
-                    title="Sign up"
-                  />
-                </View>
-              </View> */}
+          
           </View>
         </ScrollView>
       </KeyboardAvoidingView>
     </LinearGradient>
-    // </SafeAreaView>
   );
 };
 

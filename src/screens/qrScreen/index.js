@@ -28,65 +28,7 @@ const QrCode = ({ navigation }) => {
     dispatch(storeId('1'));
     navigation.navigate('SignupScreen');
   };
-  // useEffect(() => {
-  //   messaging().onNotificationOpenedApp(remoteMessage => {
-  //     console.log(
-  //       'Notification caused app to open from background state:',
-  //       remoteMessage,
-  //     );
-  //   // navigation.navigate('Chatscreen');
 
-  //     // navigation.navigate(remoteMessage.data.type);
-  //   });
-  //   // Assume a message-notification contains a "type" property in the data payload of the screen to open
-  // try {
-    
-  // } catch (error) {
-  //   console.log("🚀 ~ file: App.js:74 ~ useEffect ~ error", error)
-    
-  // }
-    
-  // // try {
-  // //   messaging()
-  // //     .getInitialNotification()
-  // //     .then(remoteMessage => {
-  // //       if (remoteMessage) {
-  // //         console.log(
-  // //           'Notification caused app to open from quit state:',
-  // //           remoteMessage
-  // //         );
-  // //   // navigation.navigate('Chatscreen');
-
-  // //         // setInitialRoute(remoteMessage.data.type); // e.g. "Settings"
-  // //       }
-  // //       // setLoading(false);
-  // //     });
-  // // } catch (error) {
-  // //   console.log("🚀 ~ file: App.js:92 ~ useEffect ~ error", error)
-    
-  // // }
-  // // try {
-  // //   messaging().onNotification = (notification) => {
-  // //     console.log('NOTIFICATIONNOTIFICATIONNOTIFICATION:', notification);
-  // //     if (notification.foreground) {
-  // //       console.log('first', notification)
-  // //       //Diplay the remote notification 
-  // //        //This->do not work (loop and notification when app closes)
-  // //       //PushNotification.localNotification({message:notification.message,details:{repeted:true}})
-  // //      //Temporal solution
-  // //     //  Alert.alert('News from Team', notification.message);
-  // //     }
-  // //   }
-  // // } catch (error) {
-    
-  // // }
-  // //   // Check whether an initial notification is available
-    
-  // // }, []);
-  // const handle = () => {
-  //   // alert("ok")
-  //   navigation.navigate('SignupScreen');
-  // };
 
   return (
     <SafeAreaView>
@@ -107,7 +49,7 @@ const QrCode = ({ navigation }) => {
             <View style={styles.ScannerView}>
               <Scaner />
               </View>
-             {/*<View style={styles.buttView}><BUtton functionName={handle} type="scan" title="Go Signup" /></View> */}
+              {/* <View style={styles.buttView}><BUtton functionName={handle} type="scan" title="Go Signup" /></View> */}
              </View>
         </ScrollView>
       </LinearGradient>

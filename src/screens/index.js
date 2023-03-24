@@ -1,9 +1,9 @@
-import BarScreen from "./Bar";
+// import BarScreen from "./Bar";
 import ChatScreen from "./Chatscreen";
 import DeatailScreen from "./DetailScreen";
-import Foodarea from "./foodArea";
-import GameZoneScreen from "./GameZonearea";
-import PatioLounge from "./PatioLounge";
+// import Foodarea from "./foodArea";
+// import GameZoneScreen from "./GameZonearea";
+// import PatioLounge from "./PatioLounge";
 import { Payment } from "./paymentScreen";
 import QrCode from "./qrScreen";
 import VbarScreen from "./QRVbarScreen";
@@ -18,4 +18,5 @@ import ContentManagment from './ContentManagment';
 import ComponentsScreen from './ComponentsScreen';
 
 
-export{ContentManagment,QrCode,SignUp,SelfiScreen,VbarScreen,GameZoneScreen,Foodarea,PatioLounge,BarScreen,ChatScreen,DeatailScreen,SplashScreen,Payment, Success , False, Contacts, OTP, ComponentsScreen}
+export{ContentManagment,QrCode,SignUp,SelfiScreen,VbarScreen,ChatScreen,DeatailScreen,SplashScreen,Payment, Success , False, Contacts, OTP, ComponentsScreen}
+// ,GameZoneScreen,Foodarea,PatioLounge,BarScreen

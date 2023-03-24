@@ -6,6 +6,8 @@ import {
   Text,
   Image,
   Dimensions,
+  ScrollView,
+  TouchableWithoutFeedback,
 } from 'react-native';
 import { BlurView } from '@react-native-community/blur';
 
@@ -15,18 +17,8 @@ const deviceHeight = Dimensions.get('window').height;
 const deviceWidth = Dimensions.get('window').width;
 import { width, height, totalSize } from 'react-native-dimension';
 const GAmeDropDown = props => {
-  // console.log(props, 'game dropdown');
+  console.log("🚀 ~ file: index.js:18 ~ GAmeDropDown ~ props:", props.location)
   const [open, setOpen] = useState(false);
-  // const [items, setItems] = useState([
-  //   {label: 'Game Area', value:'GameZonearea', param: {name:'Game Area'}},
-  //   {label: 'Food Area', value:'foodArea', param: {name:'Food Area'}},
-  //   {
-  //     label: 'Portuge/lounge',
-  //     value:'PatioLounge',
-  //     param: {name: 'Portuge/Lounge'},
-  //   },
-  //   {label: 'Bar', value: 'BARScreen', param: {name: 'Bar'}},
-  // ]);
 
   return (
     <View>
@@ -41,101 +33,146 @@ const GAmeDropDown = props => {
       </TouchableOpacity>
       {open && (
         <View
+          //horizontal={false}
           style={{
-            width: deviceWidth * 0.32,
-            // backgroundColor: 'rgba(255, 255, 255, 0.19)',
-            height: deviceHeight * 0.15,
-            position: 'absolute',
-            top: deviceHeight * 0.04,
-            borderWidth: 1,
-            borderColor: '#D1179B',
-            backgroundColor: '#000',
-          }}>
-          <View style={styles.absol} >
-            <BlurView blurType="light" blurAmount={100} >
+          width: deviceWidth * 0.32,
+          //height: deviceHeight * 0.15,
+          position: 'absolute',
+          top: deviceHeight * 0.04,
+          borderWidth: 1,
+          borderColor: '#D1179B',
+          backgroundColor: '#000',
+        }}>
+        <View style={styles.absol} >
+          <BlurView blurType="light" blurAmount={100} >
 
-            </BlurView>
-          </View>
-
-          <View>
-            <TouchableOpacity>
-              <Text style={styles.avtrname}>Patio/lounge</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.avtrname1}
-              onPress={() =>
-                props.droppScreen('PatioLounge', { name: 'Lounge' })
-              }>
-              <Text style={styles.avtrname1}>Patio/lounge</Text>
-              <View
-                style={{
-                  left: deviceWidth * 0.28,
-                  top: deviceHeight * 0.011,
-                  position: 'absolute',
-                }}>
-                <Image source={droGame} />
-              </View>
-            </TouchableOpacity>
-          </View>
-          <View>
-            <TouchableOpacity>
-              <Text style={styles.avtrname}>Game Area</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.avtrname1}
-              onPress={() =>
-                props.droppScreen('GameZonearea', { name: 'Game Area' })
-              }>
-              <Text style={styles.avtrname1}>Game Area</Text>
-              <View
-                style={{
-                  left: deviceWidth * 0.28,
-                  top: deviceHeight * 0.011,
-                  position: 'absolute',
-                }}>
-                <Image source={droGame} />
-              </View>
-            </TouchableOpacity>
-          </View>
-          <View>
-            <TouchableOpacity>
-              <Text style={styles.avtrname}>Bar</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.avtrname1}
-              onPress={() => props.droppScreen('BARScreen', { name: 'Bar' })}>
-              <Text style={styles.avtrname1}>Bar</Text>
-              <View
-                style={{
-                  left: deviceWidth * 0.28,
-                  top: deviceHeight * 0.011,
-                  position: 'absolute',
-                }}>
-                <Image source={droGame} />
-              </View>
-            </TouchableOpacity>
-          </View>
-          <View>
-            <TouchableOpacity>
-              <Text style={styles.avtrname}>Food Area</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.avtrname1}
-              onPress={() =>
-                props.droppScreen('foodArea', { name: 'Food Area' })
-              }>
-              <Text style={styles.avtrname1}>Food Area</Text>
-              <View
-                style={{
-                  left: deviceWidth * 0.28,
-                  top: deviceHeight * 0.011,
-                  position: 'absolute',
-                }}>
-                <Image source={droGame} />
-              </View>
-            </TouchableOpacity>
-          </View>
+          </BlurView>
         </View>
+
+        {props?.location?.map((val) => {
+          const {location ,id  } = val
+         
+        return (  
+        <View>
+          <TouchableOpacity>
+            <Text style={styles.avtrname}>{location}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+              style={styles.avtrname1}
+              onPress={() =>
+                props.droppScreen('ComponentsScreen', { name: location })
+              }>
+              <Text style={styles.avtrname1}>{location}</Text>
+              <View
+                style={{
+                  left: deviceWidth * 0.28,
+                  top: deviceHeight * 0.011,
+                  position: 'absolute',
+                }}>
+                <Image source={droGame} />
+              </View>
+            </TouchableOpacity>
+          </View>
+        );  
+        })}  
+        </View> 
+
+
+        // <View
+        //   style={{
+        //     width: deviceWidth * 0.32,
+        //     height: deviceHeight * 0.15,
+        //     position: 'absolute',
+        //     top: deviceHeight * 0.04,
+        //     borderWidth: 1,
+        //     borderColor: '#D1179B',
+        //     backgroundColor: '#000',
+        //   }}>
+        //   <View style={styles.absol} >
+        //     <BlurView blurType="light" blurAmount={100} >
+
+        //     </BlurView>
+        //   </View>
+
+        //   <View>
+        //     <TouchableOpacity>
+        //       <Text style={styles.avtrname}>Patio/lounge</Text>
+        //     </TouchableOpacity>
+        //     <TouchableOpacity
+        //       style={styles.avtrname1}
+        //       onPress={() =>
+        //         props.droppScreen('ComponentsScreen', { name: 'Lounge' })
+        //       }>
+        //       <Text style={styles.avtrname1}>Patio/lounge</Text>
+        //       <View
+        //         style={{
+        //           left: deviceWidth * 0.28,
+        //           top: deviceHeight * 0.011,
+        //           position: 'absolute',
+        //         }}>
+        //         <Image source={droGame} />
+        //       </View>
+        //     </TouchableOpacity>
+        //   </View>
+        //   <View>
+        //     <TouchableOpacity>
+        //       <Text style={styles.avtrname}>Game Area</Text>
+        //     </TouchableOpacity>
+        //     <TouchableOpacity
+        //       style={styles.avtrname1}
+        //       onPress={() =>
+        //         props.droppScreen('ComponentsScreen', { name: 'Game Area' })
+        //       }>
+        //       <Text style={styles.avtrname1}>Game Area</Text>
+        //       <View
+        //         style={{
+        //           left: deviceWidth * 0.28,
+        //           top: deviceHeight * 0.011,
+        //           position: 'absolute',
+        //         }}>
+        //         <Image source={droGame} />
+        //       </View>
+        //     </TouchableOpacity>
+        //   </View>
+        //   <View>
+        //     <TouchableOpacity>
+        //       <Text style={styles.avtrname}>Bar</Text>
+        //     </TouchableOpacity>
+        //     <TouchableOpacity
+        //       style={styles.avtrname1}
+        //       onPress={() => props.droppScreen('ComponentsScreen', { name: 'Bar' })}>
+        //       <Text style={styles.avtrname1}>Bar</Text>
+        //       <View
+        //         style={{
+        //           left: deviceWidth * 0.28,
+        //           top: deviceHeight * 0.011,
+        //           position: 'absolute',
+        //         }}>
+        //         <Image source={droGame} />
+        //       </View>
+        //     </TouchableOpacity>
+        //   </View>
+        //   <View>
+        //     <TouchableOpacity>
+        //       <Text style={styles.avtrname}>Food Area</Text>
+        //     </TouchableOpacity>
+        //     <TouchableOpacity
+        //       style={styles.avtrname1}
+        //       onPress={() =>
+        //         props.droppScreen('ComponentsScreen', { name: 'Food Area' })
+        //       }>
+        //       <Text style={styles.avtrname1}>Food Area</Text>
+        //       <View
+        //         style={{
+        //           left: deviceWidth * 0.28,
+        //           top: deviceHeight * 0.011,
+        //           position: 'absolute',
+        //         }}>
+        //         <Image source={droGame} />
+        //       </View>
+        //     </TouchableOpacity>
+        //   </View>
+        // </View>
 
 
       )}

@@ -49,7 +49,6 @@ const Contacts = ({ navigation = { goBack, navigate }, route }) => {
         };
         axios(config)
             .then(function (response) {
-                console.log('response', response?.data);
                 if (response?.data?.status === 'success') {
                     setContacts(response?.data?.users)
                 }
@@ -74,7 +73,6 @@ const Contacts = ({ navigation = { goBack, navigate }, route }) => {
         };
         axios(config)
             .then(function (response) {
-                console.log('response--=--=-->', response?.data);
                 navigation.navigate('Chatscreen', { data: response?.data });
             })
             .catch(function (error) {
@@ -83,7 +81,6 @@ const Contacts = ({ navigation = { goBack, navigate }, route }) => {
     };
 
     const renderListItem = (contact, i) => {
-        console.log('contact', contact)
         return (
             <TouchableOpacity
                 key={i}
@@ -196,7 +193,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 24,
-        // paddingBottom: 95,
     },
     container1: {
         flex: 1,
@@ -224,7 +220,6 @@ const styles = StyleSheet.create({
         paddingTop: 40,
     },
     aerrowback: {
-        // left: deviceWidth * -0.01,
         width: deviceWidth * 0.11,
         height: deviceHeight * 0.03,
         top: deviceHeight * 0.03,
@@ -250,8 +245,6 @@ const styles = StyleSheet.create({
         borderColor: '#D1179B',
         borderBottomWidth:1,
         borderWidth: 0,
-    
-        //elevation: 5,
         paddingVertical: 10,
         paddingHorizontal: 20,
         marginVertical: 10,
@@ -306,7 +299,6 @@ const styles = StyleSheet.create({
         marginRight: 15,
         fontSize: 11,
         color: '#B4B4B4',
-        // marginTop: 5
     },
     userImage: {
         width: 13,

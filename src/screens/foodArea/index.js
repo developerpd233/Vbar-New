@@ -32,6 +32,7 @@ const Foodarea = ({ navigation = { goBack, navigate }, route }) => {
 
   const [placeholder, setplaceholder] = useState(false);
   const { name, locationId } = route.params;
+  setTimeout(()=>console.log("🚀 ~ file: index.js:35 ~ Foodarea ~ locationId:", locationId),2000)
   const id = useSelector(state => state.qrId);
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -43,13 +44,13 @@ const Foodarea = ({ navigation = { goBack, navigate }, route }) => {
 
   const reduxData = useSelector(state => state.LocationId);
   // console.log('reduxfood area----->>', reduxData);
-  useEffect(() => {
-    GotoDetail();
-    // setplaceholder(name); 
-    // getLocation();
+  // useEffect(() => {
+  //   //GotoDetail();
+  //   // setplaceholder(name); 
+  //   // getLocation();
 
-    // console.log('useef');
-  }, [navigation]);
+  //   // console.log('useef');
+  // }, [navigation]);
 
   useEffect(() => {
     (async () => {

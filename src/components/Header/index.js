@@ -3,18 +3,14 @@ import {
   View,
   Text,
   StyleSheet,
-  SafeAreaView,
-  ImageBackground,
   Dimensions,
   Image,
   TouchableOpacity,
   Platform,
 } from 'react-native';
-import Vector from '../../assests/vector.png';
 import Vlogo from '../../assests/Vlogo.png';
 import { BASE_URL } from '../../config/WebServices';
-import ApiSauce from '../../services/networkRequest'
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { totalSize } from 'react-native-dimension';
 import arrowback from '../../assests/arrowback.png';
 import { useNavigation } from '@react-navigation/native';
@@ -28,6 +24,7 @@ const Header = (props) => {
     const navigation = useNavigation();
 
     const token = useSelector(state => state.signUpToken);
+    console.log("🚀 ~ file: index.js:27 ~ Header ~ token:", token)
     const user = useSelector(state => state?.user?.id);
 
     const GotoDetail = async item => {
@@ -43,7 +40,6 @@ const Header = (props) => {
         };
         axios(config)
           .then(function (response) {
-            console.log('response--=--=-->', response?.data);
             navigation.navigate('Detailscreen', { data: response?.data });
           })
           .catch(function (error) {
@@ -170,11 +166,8 @@ const styles = StyleSheet.create({
         position: "absolute"
     },
     aerrowback: {
-        // left: deviceWidth * -0.01,
         width: deviceWidth * 0.11,
         height: deviceHeight * 0.03,
-        //zIndex: 1,
-        //top: deviceHeight * 0.03,
         alignSelf: 'flex-start', 
         position: 'absolute', 
         left: 0
@@ -182,9 +175,6 @@ const styles = StyleSheet.create({
     aerrowbackios: {
         width: deviceWidth * 0.1,
         height: deviceHeight * 0.03,
-        //top: deviceHeight * 0.03,
-        //position: 'relative',
-        //zIndex: 1,
         alignSelf: 'flex-start', 
         position: 'absolute', 
         left: 0

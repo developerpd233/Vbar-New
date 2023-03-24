@@ -42,7 +42,6 @@ const SignUp = ({navigation}) => {
   const [relation, setrelation] = useState('');
   const [age, setage] = useState('');
   const [email, setEmail] = useState();
-  console.log("🚀 ~ file: index.js:45 ~ SignUp ~ email", email)
   const [privacyCheck, setPrivacyCheck] = useState(false);
   const [agreeCheck, setAgreeCheck] = useState(false);
 
@@ -56,7 +55,6 @@ const SignUp = ({navigation}) => {
   const [error, setError] = useState('');
   const [fcmToken, setFcmToken] = useState('');
   const isValidEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
-  console.log("🚀 ~ file: index.js:58 ~ SignUp ~ userDetails", userDetails?.[0]?.email)
 
   const [items2, setitems2] = useState([
     {label: 'Male', value: 'Male'},
@@ -88,11 +86,8 @@ const SignUp = ({navigation}) => {
   const token = useSelector(state => state.signUpToken);
   const userEmail = useSelector(state => state?.user?.email);
 
-  console.log('--->', token);
-  console.log('id----->', id);
 
   const handleSetItem = async token => {
-    console.log('token', token);
     try {
       await AsyncStorage.setItem('TOKEN', token);
     } catch (error) {
@@ -106,30 +101,17 @@ const SignUp = ({navigation}) => {
   const checkToken = async () => {
     const fcmToken = await messaging().getToken();
 
-    //const FCM = await AsyncStorage.getItem("FCM_TOKEN");
     const FCM = fcmToken;
-    console.log('🚀 ~ file: index.js:105 ~ checkToken ~ FCM', fcmToken);
     setFcmToken(FCM);
   };
 
   const handleSignUp = async () => {
-    console.log('Privacy' + privacyCheck);
     if (privacyCheck == false || agreeCheck == false) {
       setError('Please check Privacy and User agreement checkbox.');
       return false;
     }
 
-    console.log(
-      name,
-      Identify,
-      interest,
-      age,
-      drink,
-      song,
-      hobbies,
-      dislikes,
-      relation,
-    );
+   
     if (!name?.length) {
       setError('Please Enter Username');
     } else if (!Identify?.length) {
@@ -183,8 +165,6 @@ const SignUp = ({navigation}) => {
           fcmToken,
         );
 
-        //setAgreeCheck(false);
-        //setPrivacyCheck(false);
         if (response.data.status === 'verify') {
           navigation.navigate('OTP', {
             name,
@@ -236,21 +216,15 @@ const SignUp = ({navigation}) => {
         }
 
         setloading(false);
-        // navigation.navigate('SelfiScreen');
-        // console.log(response.data.token, '===>signup');
       } catch (error) {
         console.log(
           '🚀 ~ file: index.js ~ line 146 ~ handleSignUp ~ error',
           error,
         );
         handleError(error?.response?.data?.error);
-        // console.log('Error: ', error?.response?.data);
         setloading(false);
-        // console.log('Error: ', error?.response?.data?.msg);
-        // navigation.navigate('SelfiScreen');
       }
     } else {
-      // navigation.navigate('SelfiScreen');
     }
   };
   const getIdentify = value => {
@@ -293,7 +267,6 @@ const SignUp = ({navigation}) => {
     }
   };
   return (
-    // <SafeAreaView >
     <LinearGradient
       colors={['#CA60FF', '#502E78']}
       style={{
@@ -331,8 +304,7 @@ const SignUp = ({navigation}) => {
                       source={Vlogo}
                     />
                   </View>
-                  {/* <Text style={styles.title}>Sign in</Text>
-                        <Text style={styles.title1}>Sign in</Text> */}
+
                 </View>
                 <View
                   style={{
@@ -375,8 +347,7 @@ const SignUp = ({navigation}) => {
                       source={Vlogo}
                     />
                   </View>
-                  {/* <Text style={styles.title}>Sign in</Text>
-                      <Text style={styles.title1}>Sign in</Text> */}
+
                 </View>
                 <View
                   style={{
@@ -557,7 +528,6 @@ const SignUp = ({navigation}) => {
         </ScrollView>
       </KeyboardAvoidingView>
     </LinearGradient>
-    // </SafeAreaView>
   );
 };
 
@@ -573,7 +543,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingBottom: deviceHeight * -0.01,
     flexDirection: 'row',
-    // left: deviceWidth * 0.18,
   },
   title: {
     fontFamily: 'Monoton-Regular',

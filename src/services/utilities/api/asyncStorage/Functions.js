@@ -20,7 +20,6 @@ export const getValueIntoAsyncStorage = async (key) => {
         }
 
     } catch (error) {
-        // Error retrieving data
         return null
     }
 };
@@ -29,7 +28,6 @@ export const getTokenAndSetIntoHeaders = async (token) => {
     if (token) {
         axios.defaults.headers['Authorization'] = `Bearer ${token}`;
 
-        // axios.defaults.headers.common['Authorization'] = `${token}`;
     } else {
         let accessToken = await getValueIntoLocalStorage(TOKEN);
         console.log("🚀 ~ file: Functions.js ~ line 35 ~ getTokenAndSetIntoHeaders ~ accessToken", accessToken)
@@ -37,7 +35,6 @@ export const getTokenAndSetIntoHeaders = async (token) => {
         if (accessToken) {
             axios.defaults.headers['Authorization'] = `Bearer ${accessToken}`;
 
-            // axios.defaults.headers.common['Authorization'] = `${accessToken}`;
         }
     }
 };
@@ -56,7 +53,6 @@ export const getValueIntoLocalStorage = async (key) => {
         }
 
     } catch (error) {
-        // Error retrieving data
         return null
     }
 };

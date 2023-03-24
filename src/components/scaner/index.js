@@ -29,9 +29,7 @@ const Scaner = () => {
   const [scan, setScan] = useState(true);
   const [result, setResult] = useState();
 
-  console.log(scan, 'scxan');
   const user = useSelector(state => state.user);
-  console.log('user', user)
   const dispatch = useDispatch();
   useEffect(() => {
     (async () => {
@@ -42,7 +40,6 @@ const Scaner = () => {
   const getValueIntoLocalStorage = async (key) => {
     try {
         const value = await AsyncStorage.getItem(key);
-        console.log("🚀 ~ file: index.js:36 ~ getValueIntoLocalStorage ~ value", value)
         if (value !== null) {
       navigation.navigate('QRVbarscreen');
            
@@ -51,23 +48,16 @@ const Scaner = () => {
             
         }
     } catch (error) {
-        // Error retrieving data
         return null
     }
 };
   const onSuccess = async e => {
-    console.log('======>>>', e.data);
-    // console.log('res----->>', response.qrId);
     try {
       let response = await qrScan(e.data);
-      console.log("🚀 ~ file: index.js:63 ~ onSuccess ~ response", response)
-      // console.log('res----->>', response.data.qrId);
       dispatch(storeId(response.data.qrId));
       setResult(e.data);
-      // setScan(false);
     navigation.navigate('SignupScreen');
       
-      // getValueIntoLocalStorage('TOKEN')
     } catch (error) {
       console.log('qrscan error--->', error?.response);
     }
@@ -79,10 +69,7 @@ const Scaner = () => {
     console.log(result, 'scxanResult');
   };
   const handle = () => {
-    // navigation.navigate('SignupScreen');
     dispatch(storeId(1));
-    // setResult(e.data);
-    // setScan(false);
     navigation.navigate('SignupScreen');
   };
   return (
@@ -93,11 +80,7 @@ const Scaner = () => {
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
           <View style={styles.body}>
-            {/* {result && (
-              <View style={styles.sectionContainer}>
-                <Text style={styles.centerText}>{result}</Text>
-              </View>
-            )} */}
+
             {!scan && (
               <View>
                 <View style={{ justifyContent: 'center', alignItems: 'center' }}>
@@ -114,31 +97,9 @@ const Scaner = () => {
               </View>
             )}
             {scan && (
-              // <View style={styles.sectionContainer}>
-              //   <QRCodeScanner
-              //     reactivate={true}
-              //     showMarker={true}
-              //     ref={node => {
-              //       scanner => node;
-              //     }}
-              //     onRead={onSuccess}
-              //     bottomContent={
-              //       <TouchableOpacity
-              //         style={styles.ButtonsView1}
-              //         onPress={() => setScan(false)}>
-              //         <Text style={styles.bView}>Cancel Scan</Text>
-              //       </TouchableOpacity>
-              //     }
-              //   />
-              // </View>
+
               <View>
-                 {/* <TouchableOpacity
-                      style={{ ...styles.ButtonsView, width: '100%' }}
-                      onPress={() => (dispatch(storeId('1')),
-                        setScan(false),
-                        navigation.navigate('SignupScreen'))}>
-                      <Text style={styles.bView}>Cancel</Text>
-                    </TouchableOpacity> */}
+
                 <View style={{ justifyContent: 'center', alignItems: 'center' }}>
                   <QRCodeScanner
                     reactivate={true}
@@ -147,27 +108,17 @@ const Scaner = () => {
                       scanner => node;
                     }}
                     onRead={onSuccess}
-                    // containerStyle={styles.qimage}
                     containerStyle={{ ...styles.qimage, height: deviceWidth * 1, }}
                     cameraContainerStyle={{ ...styles.qimage, width: '100%', height: deviceWidth * .6, position: 'absolute', overflow: 'hidden', backgroundColor: '#EEEEEE99', borderColor: '#00FF00', borderWidth: 2 }}
                     markerStyle={{ ...styles.qimage, borderColor: 'transparent' }}
                     cameraStyle={{ ...styles.qimage, height: deviceWidth * .6 }}
                     bottomViewStyle={{ width: '100%' }}
-                  // bottomContent={
-                  //   <TouchableOpacity
-                  //     style={{ ...styles.ButtonsView, width: '100%' }}
-                  //     onPress={() => setScan(false)}>
-                  //     <Text style={styles.bView}>Cancel</Text>
-                  //   </TouchableOpacity>
-                  // }
                   />
                 </View>
                 
               </View>
             )}
-               {/* <TouchableOpacity style={{backgroundColor:'red' ,  marginTop:-100}} onPress={()=> handle()}>
-                  <Text>Done</Text>
-                </TouchableOpacity> */}
+
           </View>
        
         </ScrollView>
@@ -260,7 +211,6 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 2, height: 4 },
     shadowOpacity: 1,
     shadowRadius: 10,
-    // elevation: 20,
     bottom: deviceHeight * 0.02,
   },
   bView: {

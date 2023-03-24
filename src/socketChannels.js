@@ -10,19 +10,12 @@ import { socket } from "./socket";
 
 
 export const changeChatSocket = (setMessages, userID , logeduserid) => {
-  
-    // const reduxState = useSelector((state)=>{console.log(state,",,,,,,,,,,,,,,,,,")})
-    // console.log(reduxState);
-
     
     try {
     if (socket) {
         socket.on('private message', ({ content, from, to }) => {
 
-            console.log("This "+userID+" "+logeduserid);
-            console.log('responseresponseresponseresponse', { content, from, to })
-            let res = content;// { text: content, user: { from }, createdAt: new Date(), _id: `${from}${content?.text}` }
-            //console.log('changeChatSocket socketon', logeduserid);
+            let res = content;
             if(logeduserid == to && userID == from){
                 setMessages && setMessages(previousMessages => GiftedChat.append(previousMessages, res));
             }                   

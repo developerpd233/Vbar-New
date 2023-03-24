@@ -28,7 +28,7 @@ import {useNavigation} from '@react-navigation/native';
 import RenderHtml from 'react-native-render-html';
 import {useWindowDimensions} from 'react-native';
 
-const index = props => {
+const Index = props => {
   const {width} = useWindowDimensions();
   const navigation = useNavigation();
   const pageName = props?.route?.params?.val;
@@ -194,7 +194,7 @@ const index = props => {
   );
 };
 
-export default index;
+export default Index;
 /*   */
 const styles = StyleSheet.create({
   titleText: {

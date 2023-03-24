@@ -22,7 +22,6 @@ const PlayArea = props => {
   const [selectedIndex, setSelectedIndex] = useState('');
 
   const { users } = props;
-  // console.log('playAreauser======>>>', users);
   const handleInfo = index => {
     setSelectedIndex(index);
     setInfoText(!infoText);
@@ -38,19 +37,17 @@ const PlayArea = props => {
       {users && users?.length ? users?.map((item, index) => {
    
         return (
-          <View style={{ paddingBottom: 10 }} key={index} >
+          <View style={{ paddingBottom: 10}} key={index} >
             <View
               key={index}
               style={{
                 height: deviceHeight * 0.2,
                 marginBottom: 12,
               }}>
-              {/* <TouchableOpacity onPress={() = > handleInfo(index)}> */}
               <View>
 
                 <Avatar avtrimg={item?.imageUrl} Avtarname={item.name} />
 
-                {/* {index == selectedIndex && infoText && ( */}
                 <View style={styles.infoView}>
                   <TouchableOpacity onPress={() => props.GotoDetail(item)}>
                     <Text style={styles.info}>info</Text>
@@ -59,16 +56,12 @@ const PlayArea = props => {
                     <Text style={styles.chat}>chat</Text>
                   </TouchableOpacity>
                 </View>
-                {/* )} */}
               </View>
-              {/* </TouchableOpacity> */}
             </View>
             {(users?.length < 2 ? true : [index + 1] % 2 === 0) && (
               <View
                 style={{
-                  // flexDirection: 'column',
                   zIndex: 0,
-                  // backgroundColor: 'red',
                   justifyContent: 'center',
                   alignItems: 'center',
                   marginBottom: deviceHeight * -0.03,
@@ -78,7 +71,6 @@ const PlayArea = props => {
                 <View style={[styles.componentb]}>
                   <View
                     style={{
-                      // width:300,
                       flexDirection: 'row',
                       justifyContent: 'center',
                       marginLeft: 10,
@@ -87,6 +79,7 @@ const PlayArea = props => {
                     <GAmeDropDown
                       droppScreen={props.droppScreen}
                       plce={props.plce}
+                      location={props.location}
                     />
                   </View>
                   <BComponent
@@ -100,65 +93,7 @@ const PlayArea = props => {
         );
       }) : null}
 
-      {/* <View
-        style={{
-          flexDirection: 'column',
-          justifyContent: 'center',
-          marginBottom: 0,
-        }}>
-        <View style={[styles.componentb,{top:60,right:0}]}>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'center',
-              marginBottom: 0,
-              zIndex: 9,
-              
-            }}>
-            <GAmeDropDown droppScreen={props.droppScreen} plce={props.plce} />
-          </View>
-          <BComponent title={props.areaname} ima={props.andicationimg} />
-        </View>
-      </View> */}
-      {/* <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          height: deviceHeight * 0.2,
-        }}>
-        <TouchableOpacity onPress={() => setInfoText3(!infoText3)}>
-          <View>
-            <Avatar avtrimg={props.avatr} Avtarname={props.avtrname} />
 
-            {infoText3 && (
-              <View style={styles.infoView}>
-                <TouchableOpacity onPress={props.GotoDetail}>
-                  <Text style={styles.info}>info</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={props.Gocghat}>
-                  <Text style={styles.chat}>chat</Text>
-                </TouchableOpacity>
-              </View>
-            )}
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => setInfoText4(!infoText4)}>
-          <View>
-            <Avatar avtrimg={props.avatr} Avtarname={props.avtrname} />
-
-            {infoText4 && (
-              <View style={styles.infoView}>
-                <TouchableOpacity onPress={props.GotoDetail}>
-                  <Text style={styles.info}>info</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={props.Gocghat}>
-                  <Text style={styles.chat}>chat</Text>
-                </TouchableOpacity>
-              </View>
-            )}
-          </View>
-        </TouchableOpacity>
-      </View> */}
     </View>
   );
 
@@ -248,7 +183,5 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     paddingBottom: deviceHeight * 0.07,
     paddingTop: deviceHeight * 0.07,
-    // marginTop: deviceHeight * 0.0,
-    // marginLeft:deviceWidth * 0.10
   },
 });

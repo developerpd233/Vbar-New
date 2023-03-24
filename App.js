@@ -47,7 +47,6 @@ const App = (props) => {
   const [openSettingsForNotifications] = useMMKVStorage('openSettingsForNotifications', MMKV, false)
 
 const navigation = useNavigation();
-console.log("🚀 ~ file: App.js:39 ~ App ~ navigation", navigation)
 const {confirmPayment, loading} = useConfirmPayment();
 const dispatch = useDispatch();
 
@@ -57,24 +56,21 @@ async function requestUserPermission() {
   try {
     const authStatus = await messaging().requestPermission();
 const notiStatus =    await messaging().requestPermission({ providesAppNotificationSettings: true });
-console.log('notiStatus', notiStatus)
   const enabled =
     authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
     authStatus === messaging.AuthorizationStatus.PROVISIONAL;
-console.log('enabledenabledenabled', authStatus, )
   if (enabled) {
     try {
     const token = await messaging().getToken();
+    console.log("🚀 ~ file: App.js:65 ~ requestUserPermission ~ token:", token)
     await requestNotifications(['alert', 'badge', 'sound']);
-    const instanceId = await iid().get();
-    const registrationToken = await messaging().getToken();
-    console.log('registrationToken', registrationToken)
+
       
+    storeFCM(token)
     } catch (error) {
       console.log('errorerrorerror =>>>>>>>>>', error)
       
     }
-    storeFCM(token)
     
 
   }
@@ -88,7 +84,6 @@ console.log('enabledenabledenabled', authStatus, )
 }
 useEffect(() => {
   if (openSettingsForNotifications) {
-    console.log('openSettingsForNotifications', openSettingsForNotifications)
   }
 }, [openSettingsForNotifications])
 
@@ -97,7 +92,6 @@ useEffect(() => {
       .getDidOpenSettingsForNotification()
       .then(async didOpenSettingsForNotification => {
           if (didOpenSettingsForNotification) {
-            console.log('didOpenSettingsForNotification', didOpenSettingsForNotification)
           }
       })
 }, [])
@@ -112,7 +106,6 @@ useEffect(() => {
 const storeFCM = async (FCM_TOKEN) => {
   try {
     const FCM = FCM_TOKEN
-    console.log(":rocket: ~ file: App.js ~ line 41 ~ storeFCM ~ FCM", FCM)
     await AsyncStorage.setItem('FCM_TOKEN', FCM)
   } catch (e) {
     AsyncStorage.setItem('FCM_TOKEN', FCM)
@@ -122,21 +115,15 @@ const storeFCM = async (FCM_TOKEN) => {
 useEffect(() => {
 
   messaging().requestPermission().then((flag)=>{
-    console.log("registeredregisteredregisteredregistered", flag);
   }).catch((err)=>{
     console.log("messagemessagemessagemessage", err);
   });
 
   messaging().registerDeviceForRemoteMessages().then((flag)=>{
-    console.log("registeredregisteredregisteredregistered", flag);
   }).catch((err)=>{
     console.log("messagemessagemessagemessage", err);
   });
   messaging().onNotificationOpenedApp(remoteMessage => {
-    console.log(
-      'Notification caused app to open from background state:',
-      remoteMessage,
-    );
     const data=  JSON.parse(remoteMessage.data.user)
 
     navigation.navigate('Chatscreen' ,{data: {user: data}})
@@ -155,14 +142,7 @@ try {
     .getInitialNotification()
     .then(remoteMessage => {
       if (remoteMessage) {
-        console.log(
-          'Notification caused app to open from quit state:',
-          remoteMessage
-        );
           const data=  JSON.parse(remoteMessage.data.user)
-          console.log("🚀 ~ file: App.js:93 ~ useEffect ~ data", data)
-
-
         navigation.navigate('Chatscreen' ,{data: {user: data}})
         // setInitialRoute(remoteMessage.data.type); // e.g. "Settings"
       }
@@ -179,8 +159,6 @@ try {
 
 useEffect(() => {
   const unsubscribe = messaging().onMessage(async (remoteMessage) => {
-    console.log("🚀 ~ file: App.js:114 ~ unsubscribe ~ remoteMessage", remoteMessage)
-    
     const data=  JSON.parse(remoteMessage.data.user)
     PushNotification.localNotification({
       
@@ -198,15 +176,7 @@ useEffect(() => {
       },
     });
     
-    // if(remoteMessage.onOpen()){
-    //   console.log('1-------------------', 1)
-    // } else {
-    //   console.log('2---------------', 2)
-    // }
-          console.log("🚀 ~ file  : App.js:93 ~ useEffect ~ data", data)
 
-
-        // navigation.navigate('Chatscreen' ,{data: {user: data}})
   });
   return unsubscribe;
 }, []);
@@ -218,11 +188,8 @@ const fetchPaymentIntentClientSecret = async () => {
     },
     body: JSON.stringify({
       currency: 'usd',
-      // paymentMethodType:'Card'
     }),
   });
-  console.log("🚀 ~ file: App.js:152 ~ fetchPaymentIntentClientSecret ~ response", response)
-
   const {clientSecret} = await response.json();
 
   return clientSecret;
@@ -244,21 +211,14 @@ const handlePayPress = async () => {
         billingDetails,
       },
     });
-    console.log("🚀 ~ file: App.js:182 ~ handlePayPress ~ paymentIntent", paymentIntent , error)
   } catch (error) {
     console.log("🚀 ~ file: App.js:184 ~ handlePayPress ~ error", error)
-    
   }
-  
-    console.log("🚀 ~ file: App.js:167 ~ handlePayPress ~ clientSecret", clientSecret)
-    
-    
   } catch (error) {
     console.log("🚀 ~ file: App.js:170 ~ handlePayPress ~ error", error)
     
   }
 
-  // Fetch the intent client secret from the backend.
 };
 
   const handleDeepLink = useCallback(
@@ -266,9 +226,7 @@ const handlePayPress = async () => {
       if (url) {
         const stripeHandled = await handleURLCallback(url);
         if (stripeHandled) {
-          // This was a Stripe URL - you can return or add extra handling here as you see fit
         } else {
-          // This was NOT a Stripe URL – handle as you normally would
         }
       }
     },
@@ -312,8 +270,6 @@ const handlePayPress = async () => {
 
   return (
     <>
-   {/* <Provider store={store}> */}
-    {/* </Provider> */}
 
       <PersistGate loading={null} persistor={persistor}>
   

@@ -88,6 +88,7 @@ export async function UploadImage(file, token) {
 }
 
 export async function Getlocation(token, id) {
+ console.log("🚀 ~ file: auth.js:91 ~ Getlocation ~ token:", token , id)
  
   return await axios.get(`${baseURL}/location/getLocation/${id}`, {
     headers: {
@@ -130,7 +131,6 @@ export async function StoreLogs(logText) {
 
 
 export async function getLocationUser(token, id) {
-  // console.log('idididididididididididididididididididid', id)
   var config = {
     method: 'get',
     url: `${baseURL}/users/location/${id}`,
@@ -157,11 +157,6 @@ export async function Adduserlocation(token, id) {
     },
   };
   return await axios(config);
-  // return await axios.put(`${baseURL}/users/update-user-location/${id}`), {
-  //   headers: {
-  //     Authorization: `Bearer ${token}`,
-  //   },
-  // }
 }
 
 export async function findOneuser(token, id) {

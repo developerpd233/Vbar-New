@@ -91,7 +91,6 @@ export const PayWithStripe = (props) => {
             
             />
 
-        {/* onPress={() => initializePaymentSheet({ amount: data?.amount })} /> */}
 
     </>
 
