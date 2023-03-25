@@ -36,6 +36,8 @@ const ComponentsScreen = ({ navigation, route })=> {
     let area_img = [food,andicationimg,potli,bar]
     
     useEffect(() => {
+
+      alert("Yeah 1");
       (async () => {
         let response = await getLocationUser(token, locationId);
         let users = response.data.users.users;

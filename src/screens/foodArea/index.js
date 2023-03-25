@@ -53,6 +53,8 @@ const Foodarea = ({ navigation = { goBack, navigate }, route }) => {
   // }, [navigation]);
 
   useEffect(() => {
+   
+
     (async () => {
       let response = await getLocationUser(token, locationId);
       let users = response.data.users.users;

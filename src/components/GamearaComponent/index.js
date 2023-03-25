@@ -53,7 +53,7 @@ const BComponent = props => {
             </View>
 
             <View style={styles.vectro}>
-              <Image style={{width:"100%",height:"100%", resizeMode:'contain'}}  source={props.ima} />
+              <Image style={{width:"100%",height:"100%", resizeMode:'contain'}}  source={{uri:props.ima}} />
             </View>
           </View>
         </ImageBackground>

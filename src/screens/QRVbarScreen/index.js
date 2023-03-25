@@ -34,6 +34,8 @@ const VbarScreen = ({navigation}) => {
   console.log('🚀 ~ file: index.js:33 ~ location:', location);
 
   useEffect(() => {
+
+
     getLocation();
   }, [location]);
 
@@ -83,7 +85,10 @@ const VbarScreen = ({navigation}) => {
               
               
               {location.map((val,index) => {
-                const {location ,id  } = val
+                const {location ,id,room_image  } = val
+
+                console.log("Cool");
+                console.log(room_image);
                 
                 return (
                   <View style={{width:"50%",alignItems:"center"}}>  
@@ -92,7 +97,7 @@ const VbarScreen = ({navigation}) => {
                       GoToSwitchscreen(id);
                     }}
                     title={location}
-                    ima={food}
+                    ima={room_image}
                     // data={location[0]}
                   />
                   
@@ -231,7 +236,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingTop: deviceHeight * 0.02,
     paddingBottom: deviceHeight * 0.02,
-    right: deviceWidth * (location?.length < 2 ? -0.25 : 0.2),
+    right: deviceWidth * 0.2 ,
     height:65,
     width:200,
     marginVertical:15,
